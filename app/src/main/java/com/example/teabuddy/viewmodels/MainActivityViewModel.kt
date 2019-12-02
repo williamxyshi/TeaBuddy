@@ -10,8 +10,8 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     var currentActionPage: MutableLiveData<Int> = MutableLiveData()
 
     companion object {
-        const val LANDING_PAGE = 0
-        const val DASHBOARD_PAGE = 1
+        const val DASHBOARD_PAGE = 0
+        const val TEA_INFO = 1
     }
 
 

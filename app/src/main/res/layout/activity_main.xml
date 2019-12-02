@@ -9,15 +9,14 @@
 
 <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_height="match_parent">
 
     <fragment
         android:id="@+id/fragmentView"
-        android:name="com.example.teabuddy.fragments.LandingPageFragment"
+        android:name="com.example.teabuddy.LandingPageActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_landing_page"/>
+        tools:layout="@layout/activity_landing_page"/>
 </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
