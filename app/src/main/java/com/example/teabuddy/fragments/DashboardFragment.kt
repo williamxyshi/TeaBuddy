@@ -7,32 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.teabuddy.R
 
-/**
- * Iniitial landing page of the app
- */
-class LandingPageFragment : Fragment() {
+class DashboardFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_landing_page, container, false) as ViewGroup
+        val rootView = inflater.inflate(R.layout.fragment_dashboard, container, false) as ViewGroup
 
         initialize()
 
         return rootView
-
-
     }
 
-    /**
-     * initialize needed variables
-     */
-    private fun initialize(){
-
-        //put button stuff here!!!! @jane LE!!!!!
+    fun initialize(){
 
     }
-
 }
