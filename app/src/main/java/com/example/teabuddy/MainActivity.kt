@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
         button = findViewById(R.id.button)
 
-        button.
     }
 
 
