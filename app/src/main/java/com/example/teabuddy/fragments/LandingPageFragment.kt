@@ -16,8 +16,17 @@ class LandingPageFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_landing_page, container, false) as ViewGroup
 
+        initialize()
 
         return rootView
+
+
+    }
+
+    private fun initialize(){
+
+        //put button stuff here!!!! @jane LE!!!!!
+
     }
 
 }

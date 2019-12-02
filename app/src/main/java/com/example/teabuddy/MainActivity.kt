@@ -7,7 +7,6 @@ import com.example.teabuddy.fragments.LandingPageFragment
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var button: Button
     private lateinit var  landingPageFragment: LandingPageFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         landingPageFragment = LandingPageFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, landingPageFragment).commit()
+
     }
 
 
