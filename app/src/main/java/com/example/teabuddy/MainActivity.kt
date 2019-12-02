@@ -32,15 +32,16 @@ class MainActivity : AppCompatActivity() {
         vm = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
         vm.currentActionPage.observe(this, androidx.lifecycle.Observer {
-
-            //set page of fragment
-
+            when(it){
+                MainActivityViewModel.LANDING_PAGE->{
+                }
+                MainActivityViewModel.DASHBOARD_PAGE->{
+                }
+            }
         })
+
+
     }
-
-
-
-
 
 
 

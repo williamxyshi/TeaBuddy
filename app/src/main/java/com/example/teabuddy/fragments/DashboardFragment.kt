@@ -21,7 +21,7 @@ class DashboardFragment : Fragment() {
         return rootView
     }
 
-    fun initialize(){
+    private fun initialize(){
 
     }
 }
