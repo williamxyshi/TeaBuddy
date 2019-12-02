@@ -7,7 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="click me!"
+        app:layout_constraintBottom_toTopOf="@+id/text"
+        app:layout_constraintLeft_toLeftOf="@+id/text"
+        />
+
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
