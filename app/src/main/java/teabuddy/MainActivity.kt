@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
     }
 
+    //launches initial activity
     private fun launchLandingPage(){
         val intent = Intent(this, LandingPageActivity::class.java)
         startActivity(intent)
