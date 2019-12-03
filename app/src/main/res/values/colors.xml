@@ -8,4 +8,10 @@
     <color name="lightGreen">#f2f4ea</color>
     <color name="green">#bde9e0</color>
     <color name="darkGreen">#74a498</color>
+
+    <!--background colors-->
+    <color name="backgroundColor">@color/darkGreen</color>
+    <color name="backgroundColorAccent">#8FC9BA</color>
+
+
 </resources>

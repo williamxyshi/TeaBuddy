@@ -1,5 +1,6 @@
 package com.example.teabuddy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,11 +21,17 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(TAG, "launching main activity")
 
+        launchLandingPage()
         setUpVM()
 
         dashboardFragment = DashboardFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
+    }
+
+    private fun launchLandingPage(){
+        val intent = Intent(this, LandingPageActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setUpVM(){
@@ -34,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         vm.currentActionPage.observe(this, androidx.lifecycle.Observer {
             when(it){
                 MainActivityViewModel.DASHBOARD_PAGE->{
+                    supportActionBar?.title = resources.getString(R.string.home)
                 }
                 MainActivityViewModel.TEA_INFO->{
                 }
