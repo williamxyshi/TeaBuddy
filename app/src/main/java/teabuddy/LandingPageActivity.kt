@@ -20,10 +20,11 @@ class LandingPageActivity : AppCompatActivity() {
 
     private lateinit var button: Button
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "launching landing page activity")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
-        Log.d(TAG, "launching landing page activity")
+
 
         initialize()
     }
