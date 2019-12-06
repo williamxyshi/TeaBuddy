@@ -6,5 +6,6 @@
     <string name="user">user</string>
     <string name="start">start</string>
     <string name="tea_buddy">Tea Buddy</string>
+    <string name="builtBy">Built by Will and Jane</string>
 
 </resources>
