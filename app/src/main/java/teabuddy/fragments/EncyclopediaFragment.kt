@@ -2,7 +2,7 @@ package com.example.teabuddy.fragments
 
 import androidx.fragment.app.Fragment
 
-class TeaInfoFragment: Fragment() {
+class EncyclopediaFragment: Fragment() {
 
 
     companion object{

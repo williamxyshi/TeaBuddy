@@ -10,4 +10,8 @@
     <color name="darkGreen">#74a498</color>
     <color name="black">#000</color>
 
+    <!--background colors-->
+    <color name="backgroundColor">@color/darkGreen</color>
+    <color name="backgroundColorAccent">#8FC9BA</color>
+
 </resources>
