@@ -8,4 +8,6 @@
     <color name="lightGreen">#f2f4ea</color>
     <color name="green">#bde9e0</color>
     <color name="darkGreen">#74a498</color>
+    <color name="black">#000</color>
+
 </resources>
