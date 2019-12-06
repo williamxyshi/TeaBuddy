@@ -4,5 +4,7 @@
     <string name="encyclopedia">encyclopedia</string>
     <string name="teatimer">tea timer</string>
     <string name="user">user</string>
+    <string name="start">start</string>
+    <string name="tea_buddy">Tea Buddy</string>
 
 </resources>

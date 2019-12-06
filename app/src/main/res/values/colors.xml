@@ -13,5 +13,6 @@
     <!--background colors-->
     <color name="backgroundColor">@color/darkGreen</color>
     <color name="backgroundColorAccent">#8FC9BA</color>
+    <color name="statusBarColor">@color/gold</color>
 
 </resources>
