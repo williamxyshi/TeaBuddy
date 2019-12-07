@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "977033601875",
+    "firebase_url": "https://teabuddy-will-jane.firebaseio.com",
+    "project_id": "teabuddy-will-jane",
+    "storage_bucket": "teabuddy-will-jane.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977033601875:android:c97722790418233a82b7a6",
+        "android_client_info": {
+          "package_name": "com.willjane.teabuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977033601875-l4m1plr12t0p7ouvlniaunr4p0e2kbsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIoLJEaV0EB8Qq66dlVZXp2BJHnlHchl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977033601875-l4m1plr12t0p7ouvlniaunr4p0e2kbsg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

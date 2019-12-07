@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.example.teabuddy.R
+import com.willjane.teabuddy.R
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class DashboardFragment : Fragment() {
