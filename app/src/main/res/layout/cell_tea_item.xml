@@ -16,6 +16,7 @@
         android:src="@drawable/ic_teacup"
         android:id="@+id/tea_list_image"/>
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tea_list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/karla"
