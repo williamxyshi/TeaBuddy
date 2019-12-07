@@ -31,8 +31,8 @@ class DashboardFragment : Fragment() {
 
         recyclerView = rootView.findViewById(R.id.favouritesRecyclerView)
         vm.refreshTeaList()
-        recyclerView.adapter = TeaListAdapter(vm)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        recyclerView.adapter = TeaListAdapter(vm, context?:return null)
 
         return rootView
     }

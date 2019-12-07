@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.willjane.teabuddy" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.willjane.teabuddy.TeaBuddyApplication"
         android:allowBackup="true"
@@ -33,5 +35,6 @@
             android:resource="@array/preloaded_fonts" />
 
     </application>
+
 
 </manifest>

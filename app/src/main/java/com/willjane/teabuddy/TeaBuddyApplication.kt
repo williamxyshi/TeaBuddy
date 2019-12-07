@@ -1,6 +1,7 @@
 package com.willjane.teabuddy
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -19,13 +20,11 @@ class TeaBuddyApplication : Application() {
         Realm.init(this)
         val config = RealmConfiguration.Builder().name("TeaBuddy.realm").build()
         Realm.setDefaultConfiguration(config)
-
-        /**
-         * initializing google FIRESTORE for TEABUDDY
-         */
     }
 
     companion object{
         private const val TAG = "TeaBuddyApplication"
+
+
     }
 }

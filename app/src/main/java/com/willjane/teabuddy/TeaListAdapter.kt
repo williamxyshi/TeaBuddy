@@ -1,17 +1,23 @@
 package com.willjane.teabuddy
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.koushikdutta.ion.Ion
+import com.squareup.picasso.Picasso
+import com.willjane.teabuddy.utils.DownloadImageTask
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import java.net.URL
+import kotlin.coroutines.coroutineContext
 
-class TeaListAdapter(val vm: MainActivityViewModel): RecyclerView.Adapter<TeaListAdapter.TeaViewHolder>(){
+class TeaListAdapter(private val vm: MainActivityViewModel, private val context: Context): RecyclerView.Adapter<TeaListAdapter.TeaViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeaViewHolder {
 
@@ -24,8 +30,11 @@ class TeaListAdapter(val vm: MainActivityViewModel): RecyclerView.Adapter<TeaLis
     override fun onBindViewHolder(holder: TeaViewHolder, position: Int) {
         val tea = vm.teaList[position]
         holder.teaName.text = tea.teaName
-        holder.teaImage.setImageBitmap(urlToBitmap(tea.imageUrl))
 
+//            holder.teaImage.setImageBitmap(urlToBitmap(tea.imageUrl))
+//        DownloadImageTask(holder.teaImage).execute(tea.imageUrl)
+        Picasso.with(context).isLoggingEnabled = true
+        Picasso.with(context).load("https://cdn.shopify.com/s/files/1/1329/3455/products/Ancient_Forest_Tea_burned.jpg?v=1489465824").placeholder(R.drawable.ic_teacup).into(holder.teaImage)
     }
 
     override fun getItemCount(): Int {
