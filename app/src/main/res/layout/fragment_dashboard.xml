@@ -8,22 +8,94 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
-    <FrameLayout
+    <TextView
+        android:id="@+id/pick_brews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:fontFamily="@font/karla"
+        android:text="pick today's brew"
+        android:textColor="@color/gold"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pick_brews"
+        app:layout_constraintLeft_toLeftOf="@id/pick_brews"
+        android:text="Tea"
+        android:textColor="@color/lightGreen"
+        android:textSize="26sp"
+        android:fontFamily="@font/karla"
+        android:textStyle="bold"
+        android:id="@+id/tea_title"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/karla"
+        android:layout_marginTop="20dp"
+        android:text="favourites"
+        android:textColor="@color/gold"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/tea_title"
+        app:layout_constraintTop_toBottomOf="@id/tea_title"
+        android:textStyle="bold"
+        android:id="@+id/favourite_title"
+        />
+    <FrameLayout
+        android:id="@+id/recycle_frame"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/favourite_title"
+        app:layout_constraintLeft_toLeftOf="@id/favourite_title"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favouritesRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/cell_tea_item" />
 
     </FrameLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="poop"
+        android:fontFamily="@font/karla"
+        android:layout_marginTop="20dp"
+        android:text="recommended"
+        android:textColor="@color/gold"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/tea_title"
+        app:layout_constraintTop_toBottomOf="@id/recycle_frame"
+        android:textStyle="bold"
+        android:id="@+id/recommended_title"
+
         />
+    <FrameLayout
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/recommended_title"
+        app:layout_constraintLeft_toLeftOf="@id/recommended_title"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommendedRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/cell_tea_item" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

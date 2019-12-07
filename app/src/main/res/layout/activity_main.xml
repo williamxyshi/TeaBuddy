@@ -16,7 +16,7 @@
         <fragment
             android:id="@+id/fragmentView"
             android:name="com.willjane.teabuddy.fragments.DashboardFragment"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             tools:layout="@layout/fragment_dashboard"/>
     </FrameLayout>
