@@ -22,37 +22,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d(TAG, "launching main activity")
-
-        launchLandingPage()
-
         setUpVM()
 
         dashboardFragment = DashboardFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
 
-        val tea = hashMapOf(
-                            "name" to "Jasmine",
-                            "temp" to 85,
-                            "time" to 2
-        )
-
-        val list = listOf<Int>()
+        vm.refreshTeaList()
 
 
-        vm.firestore.collection("teas").add(tea).addOnSuccessListener {
-            Log.d(TAG,  "tea successfully added")
-        } .addOnFailureListener { e ->
-            Log.e(TAG,  "tea falied to be added", e)
-
-        }
-    }
-
-    //launches initial activity
-    private fun launchLandingPage(){
-        val intent = Intent(this, LandingPageActivity::class.java)
-        startActivity(intent)
     }
 
     private fun setUpVM(){
@@ -66,6 +44,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 MainActivityViewModel.TEA_INFO->{
                 }
+            }
+        })
+        vm.teaListUpdated.observe(this, androidx.lifecycle.Observer {
+            if(it){
+                Log.d(TAG, "vm.teaList: ${vm.teaList}")
             }
         })
     }
