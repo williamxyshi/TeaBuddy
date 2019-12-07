@@ -37,7 +37,8 @@ class LandingPageActivity : AppCompatActivity() {
 
         //start button pressed, start main activity
         button.setOnClickListener{
-            finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }
