@@ -31,6 +31,22 @@ class MainActivity : AppCompatActivity() {
         dashboardFragment = DashboardFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
+
+        val tea = hashMapOf(
+                            "name" to "Jasmine",
+                            "temp" to 85,
+                            "time" to 2
+        )
+
+        val list = listOf<Int>()
+
+
+        vm.firestore.collection("teas").add(tea).addOnSuccessListener {
+            Log.d(TAG,  "tea successfully added")
+        } .addOnFailureListener { e ->
+            Log.e(TAG,  "tea falied to be added", e)
+
+        }
     }
 
     //launches initial activity

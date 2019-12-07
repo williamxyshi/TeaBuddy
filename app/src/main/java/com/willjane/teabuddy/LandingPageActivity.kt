@@ -26,7 +26,6 @@ class LandingPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
 
-
         initialize()
     }
 
