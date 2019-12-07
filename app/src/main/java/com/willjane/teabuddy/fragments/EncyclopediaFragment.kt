@@ -1,4 +1,4 @@
-package com.example.teabuddy.fragments
+package com.willjane.teabuddy.fragments
 
 import androidx.fragment.app.Fragment
 

@@ -1,4 +1,4 @@
-package com.example.teabuddy.viewmodels
+package com.willjane.teabuddy.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

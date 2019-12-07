@@ -1,4 +1,4 @@
-package com.example.teabuddy
+package com.willjane.teabuddy
 
 
 import android.content.Intent
@@ -8,8 +8,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.example.teabuddy.fragments.DashboardFragment
-import com.example.teabuddy.viewmodels.MainActivityViewModel
+import com.willjane.teabuddy.R
+import com.willjane.teabuddy.fragments.DashboardFragment
+import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
 

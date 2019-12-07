@@ -1,4 +1,4 @@
-package com.example.teabuddy.fragments
+package com.willjane.teabuddy.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.teabuddy.R
-import com.example.teabuddy.viewmodels.MainActivityViewModel
+import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class DashboardFragment : Fragment() {
 
