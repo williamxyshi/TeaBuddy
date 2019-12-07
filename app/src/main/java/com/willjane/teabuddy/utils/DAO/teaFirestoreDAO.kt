@@ -1,4 +1,4 @@
-package com.willjane.teabuddy.utils
+package com.willjane.teabuddy.utils.DAO
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
@@ -7,14 +7,14 @@ import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class TeaFirestoreDao{
 
-    val firestore = FirebaseFirestore.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
 
     fun retrieveTeaList(vm: MainActivityViewModel){
 
         val teaList: MutableList<Tea> = mutableListOf()
 
-        val task = firestore.collection("teas")
+        firestore.collection("teas")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
@@ -32,7 +32,7 @@ class TeaFirestoreDao{
             }
     }
 
-    fun formatToTea(hashMap: Map<String, Any>): Tea{
+    private fun formatToTea(hashMap: Map<String, Any>): Tea{
 
         return Tea( hashMap["name"] as String,
             ( hashMap["teaId"] as Long).toInt(),

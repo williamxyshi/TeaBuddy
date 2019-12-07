@@ -1,11 +1,9 @@
 package com.willjane.teabuddy.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.firestore.FirebaseFirestore
-import com.willjane.teabuddy.utils.TeaFirestoreDao
+import com.willjane.teabuddy.utils.DAO.TeaFirestoreDao
 import com.willjane.teabuddy.utils.models.Tea
 import io.realm.Realm
 

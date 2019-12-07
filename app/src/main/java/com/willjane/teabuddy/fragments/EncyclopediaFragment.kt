@@ -1,9 +1,37 @@
 package com.willjane.teabuddy.fragments
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.graphics.rotationMatrix
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import com.willjane.teabuddy.R
+import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class EncyclopediaFragment: Fragment() {
 
+    private lateinit var  vm:  MainActivityViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_encyclopedia, container, false) as ViewGroup
+
+        initialize()
+
+        return rootView
+    }
+    private fun initialize(){
+        vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
+        vm.currentActionPage.value = MainActivityViewModel.DASHBOARD_PAGE
+
+
+
+    }
 
     companion object{
         const val TAG = "TeaInfoFragment"
