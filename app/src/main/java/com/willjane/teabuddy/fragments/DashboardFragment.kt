@@ -13,6 +13,8 @@ class DashboardFragment : Fragment() {
 
     private lateinit var vm: MainActivityViewModel
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,6 +30,9 @@ class DashboardFragment : Fragment() {
     private fun initialize(){
         vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
         vm.currentActionPage.value = MainActivityViewModel.DASHBOARD_PAGE
+
+
+
     }
 
     override fun onResume() {

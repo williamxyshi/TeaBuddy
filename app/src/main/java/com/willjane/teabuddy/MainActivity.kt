@@ -1,20 +1,27 @@
 package com.willjane.teabuddy
 
 
+import android.content.ClipData
 import android.content.Intent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.bottomnavigation.BottomNavigationMenu
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.willjane.teabuddy.R
 import com.willjane.teabuddy.fragments.DashboardFragment
+import com.willjane.teabuddy.fragments.EncyclopediaFragment
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var  dashboardFragment: DashboardFragment
+    private lateinit var  encyclopediaFragment: EncyclopediaFragment
 
     private lateinit var vm: MainActivityViewModel
 
@@ -22,37 +29,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d(TAG, "launching main activity")
-
-        launchLandingPage()
-
         setUpVM()
+        setUpNavigationBar()
 
         dashboardFragment = DashboardFragment()
+        encyclopediaFragment = EncyclopediaFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
 
-        val tea = hashMapOf(
-                            "name" to "Jasmine",
-                            "temp" to 85,
-                            "time" to 2
-        )
-
-        val list = listOf<Int>()
+        vm.refreshTeaList()
 
 
-        vm.firestore.collection("teas").add(tea).addOnSuccessListener {
-            Log.d(TAG,  "tea successfully added")
-        } .addOnFailureListener { e ->
-            Log.e(TAG,  "tea falied to be added", e)
-
-        }
-    }
-
-    //launches initial activity
-    private fun launchLandingPage(){
-        val intent = Intent(this, LandingPageActivity::class.java)
-        startActivity(intent)
     }
 
     private fun setUpVM(){
@@ -68,6 +55,54 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        vm.teaListUpdated.observe(this, androidx.lifecycle.Observer {
+            if(it){
+                Log.d(TAG, "vm.teaList: ${vm.teaList}")
+            }
+        })
+    }
+
+    private fun setUpNavigationBar(){
+
+        navigationView.setOnNavigationItemSelectedListener {
+
+            when(it.itemId){
+                R.id.bottom_navigation_dashboard-> {
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentView, dashboardFragment).commit()
+                        addToBackStack(null)
+                    }
+                    true
+                }
+                R.id.bottom_navigation_encyclopedia-> {
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentView, encyclopediaFragment).commit()
+                        addToBackStack(null)
+                    }
+                    true
+                }
+                R.id.bottom_navigation_teatimer->{
+
+                    true
+                }
+                R.id.bottom_navigation_user->{
+
+                    true
+                }
+
+
+                else -> {
+
+                    false
+                }
+
+
+
+            }
+
+        }
+
+
     }
 
     companion object{
