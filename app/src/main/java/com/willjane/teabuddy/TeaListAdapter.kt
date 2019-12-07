@@ -1,5 +1,7 @@
 package com.willjane.teabuddy
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
+import java.net.URL
 
 class TeaListAdapter(val vm: MainActivityViewModel): RecyclerView.Adapter<TeaListAdapter.TeaViewHolder>(){
 
@@ -19,11 +22,19 @@ class TeaListAdapter(val vm: MainActivityViewModel): RecyclerView.Adapter<TeaLis
     }
 
     override fun onBindViewHolder(holder: TeaViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val tea = vm.teaList[position]
+        holder.teaName.text = tea.teaName
+        holder.teaImage.setImageBitmap(urlToBitmap(tea.imageUrl))
+
     }
 
     override fun getItemCount(): Int {
        return vm.teaList.size
+    }
+
+    private fun urlToBitmap(url: String): Bitmap {
+        val url = URL(url)
+        return BitmapFactory.decodeStream(url.openConnection().getInputStream())
     }
 
     inner class TeaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

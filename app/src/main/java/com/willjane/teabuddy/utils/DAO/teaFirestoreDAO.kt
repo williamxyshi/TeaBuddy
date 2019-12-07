@@ -39,7 +39,8 @@ class TeaFirestoreDao{
             (hashMap["brewTemp"] as Long).toInt(),
             (hashMap["brewTime"] as Long).toInt(),
             (hashMap["brewAmount"] as Double).toInt(),
-            hashMap["parentTea"] as String)
+            hashMap["parentTea"] as String,
+            hashMap["image"] as String)
     }
 
     companion object{

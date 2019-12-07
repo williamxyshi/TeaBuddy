@@ -4,16 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.willjane.teabuddy.R
+import com.willjane.teabuddy.TeaListAdapter
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class DashboardFragment : Fragment() {
 
     private lateinit var vm: MainActivityViewModel
 
-
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +29,11 @@ class DashboardFragment : Fragment() {
 
         initialize()
 
+        recyclerView = rootView.findViewById(R.id.favouritesRecyclerView)
+        vm.refreshTeaList()
+        recyclerView.adapter = TeaListAdapter(vm)
+        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+
         return rootView
     }
 
@@ -31,6 +41,13 @@ class DashboardFragment : Fragment() {
         vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
         vm.currentActionPage.value = MainActivityViewModel.DASHBOARD_PAGE
 
+        vm.teaListUpdated.observe(this, Observer {
+            if(it){
+                recyclerView.adapter?.notifyDataSetChanged()
+
+
+            }
+        })
 
 
     }
