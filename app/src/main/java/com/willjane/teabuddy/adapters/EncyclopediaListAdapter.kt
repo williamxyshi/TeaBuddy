@@ -28,6 +28,13 @@ class EncyclopediaListAdapter(private val vm: MainActivityViewModel, private val
 //            holder.teaImage.setImageBitmap(urlToBitmap(tea.imageUrl))
 //        DownloadImageTask(holder.teaImage).execute(tea.imageUrl)
         Glide.with(context).load(tea.imageUrl).into(holder.teaImage)
+
+        holder.teaName.setOnClickListener {
+            vm.currentTea.value = tea
+        }
+        holder.teaImage.setOnClickListener {
+            vm.currentTea.value = tea
+        }
     }
 
     override fun getItemCount(): Int {

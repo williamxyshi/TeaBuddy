@@ -39,7 +39,7 @@ class EncyclopediaFragment: Fragment() {
     }
     private fun initialize(){
         vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
-        vm.currentActionPage.value = MainActivityViewModel.TEA_INFO
+        vm.currentActionPage.value = MainActivityViewModel.ENCYCLOPEDIA_PAGE
 
     }
 

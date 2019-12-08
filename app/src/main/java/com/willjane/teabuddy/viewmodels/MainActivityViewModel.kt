@@ -16,6 +16,8 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     var teaList = listOf<Tea>()
     var teaListUpdated : MutableLiveData<Boolean> = MutableLiveData(false)
 
+    val currentTea : MutableLiveData<Tea> = MutableLiveData()
+
     fun refreshTeaList(){
             teaListUpdated.value = false
             teaFirestoreDAO.retrieveTeaList(this)
@@ -26,7 +28,9 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         const val TAG = "MainActivityViewModel"
 
         const val DASHBOARD_PAGE = 0
-        const val TEA_INFO = 1
+        const val ENCYCLOPEDIA_PAGE = 1
+        const val TEA_INFO_PAGE = 2
+
     }
 
 

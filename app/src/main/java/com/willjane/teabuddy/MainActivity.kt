@@ -1,20 +1,13 @@
 package com.willjane.teabuddy
 
 
-import android.content.ClipData
-import android.content.Intent
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.bottomnavigation.BottomNavigationMenu
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.willjane.teabuddy.R
 import com.willjane.teabuddy.fragments.DashboardFragment
 import com.willjane.teabuddy.fragments.EncyclopediaFragment
+import com.willjane.teabuddy.fragments.TeaInformationFragment
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -51,7 +44,11 @@ class MainActivity : AppCompatActivity() {
                 MainActivityViewModel.DASHBOARD_PAGE->{
                     supportActionBar?.title = resources.getString(R.string.home)
                 }
-                MainActivityViewModel.TEA_INFO->{
+                MainActivityViewModel.ENCYCLOPEDIA_PAGE->{
+                    supportActionBar?.title = resources.getString(R.string.encyclopedia)
+                }
+                MainActivityViewModel.TEA_INFO_PAGE->{
+                    supportActionBar?.title = resources.getString(R.string.teaInfo)
                 }
             }
         })
@@ -59,6 +56,15 @@ class MainActivity : AppCompatActivity() {
             if(it){
                 Log.d(TAG, "vm.teaList: ${vm.teaList}")
             }
+        })
+        vm.currentTea.observe(this, androidx.lifecycle.Observer {
+            if(it != null){
+                supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.fragmentView, TeaInformationFragment(it)).commit()
+                    addToBackStack(null)
+                }
+            }
+
         })
     }
 
@@ -95,9 +101,6 @@ class MainActivity : AppCompatActivity() {
 
                     false
                 }
-
-
-
             }
 
         }
