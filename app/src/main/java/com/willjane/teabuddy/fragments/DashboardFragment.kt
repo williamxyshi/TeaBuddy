@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.willjane.teabuddy.R
@@ -17,7 +18,9 @@ class DashboardFragment : Fragment() {
 
     private lateinit var vm: MainActivityViewModel
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var favRecyclerView: RecyclerView
+
+    private lateinit var recRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,11 +31,15 @@ class DashboardFragment : Fragment() {
 
         initialize()
 
-        recyclerView = rootView.findViewById(R.id.favouritesRecyclerView)
+        favRecyclerView = rootView.findViewById(R.id.favouritesRecyclerView)
         vm.refreshTeaList()
-        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        recyclerView.adapter =
+        favRecyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        favRecyclerView.adapter =
             TeaListAdapter(vm, context ?: return null)
+
+        recRecyclerView = rootView.findViewById(R.id.recRecyclerView)
+        recRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        recRecyclerView.adapter = TeaListAdapter(vm, context ?: return null)
 
         return rootView
     }
@@ -43,7 +50,8 @@ class DashboardFragment : Fragment() {
 
         vm.teaListUpdated.observe(this, Observer {
             if(it){
-                recyclerView.adapter?.notifyDataSetChanged()
+                favRecyclerView.adapter?.notifyDataSetChanged()
+                recRecyclerView.adapter?.notifyDataSetChanged()
 
 
             }
