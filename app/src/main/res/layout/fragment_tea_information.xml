@@ -117,6 +117,21 @@ This lot is exclusive to our tea house and produced according to our specificati
         app:layout_constraintTop_toBottomOf="@id/teaFamilyText"/>
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="brew"
+        android:textColor="@color/purple"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:textSize="50sp"
+        android:background="@drawable/rounded_button_green"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
