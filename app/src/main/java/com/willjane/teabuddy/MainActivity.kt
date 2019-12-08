@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.willjane.teabuddy.fragments.DashboardFragment
 import com.willjane.teabuddy.fragments.EncyclopediaFragment
 import com.willjane.teabuddy.fragments.TeaInformationFragment
+import com.willjane.teabuddy.fragments.TeaTimerFragment
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
