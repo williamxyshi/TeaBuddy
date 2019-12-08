@@ -27,6 +27,7 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
 
         const val DASHBOARD_PAGE = 0
         const val TEA_INFO = 1
+        const val TEA_TIMER = 2
     }
 
 

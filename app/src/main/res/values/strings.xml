@@ -5,7 +5,9 @@
     <string name="teatimer">tea timer</string>
     <string name="user">user</string>
     <string name="start">start</string>
+    <string name="stop">stop</string>
     <string name="tea_buddy">Tea Buddy</string>
     <string name="builtBy">Built by Will and Jane</string>
+    <string name="timetea">time your brew</string>
 
 </resources>

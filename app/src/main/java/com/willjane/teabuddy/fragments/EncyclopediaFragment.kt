@@ -29,9 +29,7 @@ class EncyclopediaFragment: Fragment() {
         initialize()
 
         recyclerView = rootView.findViewById(R.id.encyclopediaRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(context,
-                                                                                                    RecyclerView.VERTICAL,
-                                                                        false)
+        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         recyclerView.adapter = EncyclopediaListAdapter(vm, requireContext())
 
 

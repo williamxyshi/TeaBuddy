@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.willjane.teabuddy.R
 import com.willjane.teabuddy.fragments.DashboardFragment
 import com.willjane.teabuddy.fragments.EncyclopediaFragment
+import com.willjane.teabuddy.fragments.TeaTimerFragment
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var  dashboardFragment: DashboardFragment
     private lateinit var  encyclopediaFragment: EncyclopediaFragment
+    private  lateinit var  teaTimerFragment: TeaTimerFragment
 
     private lateinit var vm: MainActivityViewModel
 
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         dashboardFragment = DashboardFragment()
         encyclopediaFragment = EncyclopediaFragment()
+        teaTimerFragment = TeaTimerFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
 
@@ -82,7 +85,10 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.bottom_navigation_teatimer->{
-
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentView, teaTimerFragment).commit()
+                        addToBackStack(null)
+                    }
                     true
                 }
                 R.id.bottom_navigation_user->{
