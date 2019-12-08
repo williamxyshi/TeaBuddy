@@ -1,11 +1,8 @@
-package com.willjane.teabuddy
+package com.willjane.teabuddy.adapters
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
-import android.os.AsyncTask
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.koushikdutta.ion.Ion
-import com.squareup.picasso.Picasso
-import com.willjane.teabuddy.utils.DownloadImageTask
+import com.willjane.teabuddy.R
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
-import java.lang.Exception
 import java.net.URL
-import kotlin.coroutines.coroutineContext
 
 class TeaListAdapter(private val vm: MainActivityViewModel, private val context: Context): RecyclerView.Adapter<TeaListAdapter.TeaViewHolder>(){
 

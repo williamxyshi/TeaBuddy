@@ -7,26 +7,32 @@
     android:layout_height="match_parent"
     android:layout_margin="5dp">
 
-    <ImageView
+    <FrameLayout
+        android:id="@+id/imageContainer"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/circle"
-        android:src="@drawable/ic_teacup"
-        android:id="@+id/tea_list_image"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_teacup"
+            android:id="@+id/tea_list_image"/>
+    </FrameLayout>
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tea_list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/karla"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="tea name"
         android:textColor="@color/gold"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@id/tea_list_image"
-        app:layout_constraintRight_toRightOf="@id/tea_list_image"
-        app:layout_constraintTop_toBottomOf="@id/tea_list_image"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/imageContainer"
+        app:layout_constraintRight_toRightOf="@id/imageContainer"
+        app:layout_constraintTop_toBottomOf="@id/imageContainer"
         android:textStyle="bold" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
