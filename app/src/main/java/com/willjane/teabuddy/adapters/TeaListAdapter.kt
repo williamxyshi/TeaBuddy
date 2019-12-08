@@ -14,7 +14,7 @@ import com.willjane.teabuddy.R
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import java.net.URL
 
-class TeaListAdapter(private val vm: MainActivityViewModel, private val context: Context): RecyclerView.Adapter<TeaListAdapter.TeaViewHolder>(){
+class TeaListAdapter(private val vm: MainActivityViewModel, private val context: Context, private val favList: Boolean = false): RecyclerView.Adapter<TeaListAdapter.TeaViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeaViewHolder {
 
@@ -25,7 +25,7 @@ class TeaListAdapter(private val vm: MainActivityViewModel, private val context:
     }
 
     override fun onBindViewHolder(holder: TeaViewHolder, position: Int) {
-        val tea = vm.teaList[position]
+        val tea = if(favList) vm.favList[position] else vm.teaList[position]
         holder.teaName.text = tea.teaName
 
 //            holder.teaImage.setImageBitmap(urlToBitmap(tea.imageUrl))
@@ -36,12 +36,7 @@ class TeaListAdapter(private val vm: MainActivityViewModel, private val context:
     }
 
     override fun getItemCount(): Int {
-       return vm.teaList.size
-    }
-
-    private fun urlToBitmap(url: String): Bitmap {
-        val url = URL(url)
-        return BitmapFactory.decodeStream(url.openConnection().getInputStream())
+       return if(favList) vm.favList.size else vm.teaList.size
     }
 
     inner class TeaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

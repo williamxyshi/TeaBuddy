@@ -24,7 +24,7 @@ class TeaTimerFragment: Fragment() {
     private lateinit var timerSec: TextView
     private lateinit var startTime: Button
     private lateinit var stopTime: Button
-    private var timerLength: Long = 350000
+    private var timerLength: Long = 180000
     private lateinit var countDownTimer: CountDownTimer
     private var isInitStart = false
 
