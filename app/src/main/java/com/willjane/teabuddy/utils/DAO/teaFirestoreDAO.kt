@@ -19,12 +19,15 @@ class TeaFirestoreDao{
             .addOnSuccessListener { result ->
                 for (document in result) {
 
-                    teaList.add(formatToTea(document.data))
+                    val tea = formatToTea(document.data)
+                    tea.fav = TeaRealmDAO.isFav(tea.teaId)
+
+                    teaList.add(tea)
 
                     Log.d(TAG, "${document.id} => ${document.data}")
                 }
-                vm.teaList = teaList
-                Log.d(MainActivityViewModel.TAG, "teaList: ${vm.teaList}")
+                vm.fireStoreTeaList = teaList
+                Log.d(MainActivityViewModel.TAG, "teaList: ${vm.fireStoreTeaList}")
                 vm.teaListUpdated.value = true
             }
             .addOnFailureListener { exception ->

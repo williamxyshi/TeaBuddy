@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.willjane.teabuddy.fragments.DashboardFragment
 import com.willjane.teabuddy.fragments.EncyclopediaFragment
 import com.willjane.teabuddy.fragments.TeaInformationFragment
+import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -54,7 +55,10 @@ class MainActivity : AppCompatActivity() {
         })
         vm.teaListUpdated.observe(this, androidx.lifecycle.Observer {
             if(it){
-                Log.d(TAG, "vm.teaList: ${vm.teaList}")
+                Log.d(TAG, "vm.teaList: ${vm.fireStoreTeaList}")
+                TeaRealmDAO.updateTeaList(vm.fireStoreTeaList)
+
+                Log.d(TAG, "realm test: ${TeaRealmDAO.getTeaList()}")
             }
         })
         vm.currentTea.observe(this, androidx.lifecycle.Observer {

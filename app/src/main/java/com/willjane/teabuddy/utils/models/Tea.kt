@@ -1,13 +1,26 @@
 package com.willjane.teabuddy.utils.models
 
-//Tea class
-class Tea(_name: String, _id: Int, _temp: Int, _time: Int, _amount: Int, _parentTea: String, _imageUrl: String) {
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
-    val teaName = _name
-    val parentTea = _parentTea
-    val teaId = _id
-    val imageUrl = _imageUrl
-    val brewTemp = _temp
-    val brewTime = _time
-    val brewAmount = _amount
+//Tea class
+open class Tea(_name: String = "green", _id: Int = -1,
+                 _temp: Int  = -1, _time: Int = -1,
+                 _amount: Int = -1, _parentTea: String = "green",
+                 _imageUrl: String = "") : RealmObject(){
+
+
+
+    @PrimaryKey
+    var teaId = _id
+
+
+    var teaName = _name
+    var parentTea = _parentTea
+    var imageUrl = _imageUrl
+    var brewTemp = _temp
+    var brewTime = _time
+    var brewAmount = _amount
+
+    var fav = false
 }

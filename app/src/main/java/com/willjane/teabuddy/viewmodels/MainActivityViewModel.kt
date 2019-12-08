@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.willjane.teabuddy.utils.DAO.TeaFirestoreDao
+import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.utils.models.Tea
 import io.realm.Realm
 
@@ -13,7 +14,17 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     val realm = Realm.getDefaultInstance()
 
     val teaFirestoreDAO = TeaFirestoreDao()
-    var teaList = listOf<Tea>()
+
+    var fireStoreTeaList = listOf<Tea>()
+
+    val teaList: List<Tea>
+        get() = TeaRealmDAO.getTeaList()
+
+    val favList: List<Tea>
+        get() = TeaRealmDAO.getFavList()
+
+
+
     var teaListUpdated : MutableLiveData<Boolean> = MutableLiveData(false)
 
     val currentTea : MutableLiveData<Tea> = MutableLiveData()

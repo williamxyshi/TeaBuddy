@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.willjane.teabuddy.R
+import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class EncyclopediaListAdapter(private val vm: MainActivityViewModel, private val context: Context): RecyclerView.Adapter<EncyclopediaListAdapter.EncyclopediaViewHolder>(){
@@ -18,12 +19,21 @@ class EncyclopediaListAdapter(private val vm: MainActivityViewModel, private val
         return EncyclopediaViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cell_encyclopedia_item, parent, false)).apply {
             teaName = itemView.findViewById(R.id.encyclopedia_list_text)
             teaImage = itemView.findViewById(R.id.encyclopedia_list_image)
+            favStar = itemView.findViewById(R.id.favStar)
         }
     }
 
     override fun onBindViewHolder(holder: EncyclopediaViewHolder, position: Int) {
         val tea = vm.teaList[position]
         holder.teaName.text = tea.teaName
+
+        val isFav = TeaRealmDAO.isFav(tea.teaId)
+
+        if (isFav){
+            holder.favStar.setColorFilter(context.getColor(R.color.deepGold))
+        } else {
+            holder.favStar.setColorFilter(context.getColor(R.color.white))
+        }
 
 //            holder.teaImage.setImageBitmap(urlToBitmap(tea.imageUrl))
 //        DownloadImageTask(holder.teaImage).execute(tea.imageUrl)
@@ -35,6 +45,11 @@ class EncyclopediaListAdapter(private val vm: MainActivityViewModel, private val
         holder.teaImage.setOnClickListener {
             vm.currentTea.value = tea
         }
+
+        holder.favStar.setOnClickListener {
+            TeaRealmDAO.toggleFav(tea.teaId)
+            notifyDataSetChanged()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -44,6 +59,8 @@ class EncyclopediaListAdapter(private val vm: MainActivityViewModel, private val
     inner class EncyclopediaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         lateinit var teaName: TextView
         lateinit var teaImage: ImageView
+
+        lateinit var favStar : ImageView
 
     }
 

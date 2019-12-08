@@ -11,6 +11,7 @@
     <color name="darkerGreen">#44645C</color>
     <color name="black">#000</color>
     <color name="white">#ffffff </color>
+    <color name="deepGold">#aa6c39  </color>
 
     <!--background colors-->
     <color name="backgroundColor">@color/darkGreen</color>
