@@ -12,7 +12,7 @@
 
   - Pulls data from Google Cloud Firestore 
   - Stores local data to Realm, allowing users to favorite teas for easy access
-  - Supports SignIn/SignUp through Google, Facebook and Email/Password - allowing user data to be transferred between devices
+  - Supports SignIn/SignUp through Google, Facebook and Email/Password - allowing user data to be transferred between devices through the cloud
   - Provides images and a brief history of the tea
   - Brew amount, temperature of time given to help achieve a perfect brew!
   - Timer allows users to set a custom time, or use a preset one
