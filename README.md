@@ -14,13 +14,13 @@
   - Stores local data to Realm, allowing users to favorite teas for easy access
   - Supports SignIn/SignUp through Google, Facebook and Email/Password - allowing user data to be transferred between devices through the cloud
   - Displays URI images with Glide and provides a brief history of each tea from our database
-  - Brew amount, temperature of time given to help achieve a perfect brew!
+  - Brew amount, temperature and time given to help achieve a perfect brew!
   - Timer feature allows users to set a custom time, or use a preset one
 
 
 Planned features:
   - Google Maps to help users find local tea shops
-  - Community screen for sharing brew
+  - Community screen for sharing brews
   - Home screen widget for quick access to timer
   - Add more teas!!!!
   ##
