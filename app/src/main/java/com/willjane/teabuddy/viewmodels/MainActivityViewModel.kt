@@ -26,6 +26,7 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
 
 
     var teaListUpdated : MutableLiveData<Boolean> = MutableLiveData(false)
+    var launchLoginActivity : MutableLiveData<Boolean> = MutableLiveData(false)
 
     val currentTea : MutableLiveData<Tea> = MutableLiveData()
 
@@ -42,6 +43,7 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         const val ENCYCLOPEDIA_PAGE = 1
         const val TEA_TIMER = 2
         const val TEA_INFO_PAGE = 3
+        const val USER_PAGE = 4
     }
 
 
