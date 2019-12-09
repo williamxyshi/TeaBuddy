@@ -13,14 +13,15 @@
   - Pulls tea and user data from Google Cloud Firestore 
   - Stores local data to Realm, allowing users to favorite teas for easy access
   - Supports SignIn/SignUp through Google, Facebook and Email/Password - allowing user data to be transferred between devices through the cloud
-  - Provides images and a brief history of the tea
+  - Displays URI images with Glide and provides a brief history of each tea from our database
   - Brew amount, temperature of time given to help achieve a perfect brew!
-  - Timer allows users to set a custom time, or use a preset one
+  - Timer feature allows users to set a custom time, or use a preset one
 
 
 Planned features:
-  - Twilio API for text notifications when tea is finished
   - Google Maps to help users find local tea shops
+  - Community screen for sharing brew
+  - Home screen widget for quick access to timer
   - Add more teas!!!!
   ##
   ##
