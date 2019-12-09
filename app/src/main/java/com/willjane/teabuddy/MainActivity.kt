@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProviders
-import com.willjane.teabuddy.fragments.DashboardFragment
-import com.willjane.teabuddy.fragments.EncyclopediaFragment
-import com.willjane.teabuddy.fragments.TeaInformationFragment
+import com.google.firebase.firestore.auth.User
+import com.willjane.teabuddy.fragments.*
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  dashboardFragment: DashboardFragment
     private lateinit var  encyclopediaFragment: EncyclopediaFragment
     private  lateinit var  teaTimerFragment: TeaTimerFragment
+    private  lateinit var  userFragment: UserFragment
 
     private lateinit var vm: MainActivityViewModel
 
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         dashboardFragment = DashboardFragment()
         encyclopediaFragment = EncyclopediaFragment()
         teaTimerFragment = TeaTimerFragment()
+        userFragment = UserFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
 
@@ -49,6 +50,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 MainActivityViewModel.ENCYCLOPEDIA_PAGE->{
                     supportActionBar?.title = resources.getString(R.string.encyclopedia)
+                }
+                MainActivityViewModel.TEA_TIMER->{
+                    supportActionBar?.title = resources.getString(R.string.teatimer)
                 }
                 MainActivityViewModel.TEA_INFO_PAGE->{
                     supportActionBar?.title = resources.getString(R.string.teaInfo)
@@ -101,7 +105,10 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.bottom_navigation_user->{
-
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentView, userFragment).commit()
+                        addToBackStack(null)
+                    }
                     true
                 }
 

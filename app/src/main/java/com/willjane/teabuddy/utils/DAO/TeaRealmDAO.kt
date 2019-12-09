@@ -1,5 +1,6 @@
 package com.willjane.teabuddy.utils.DAO
 
+import android.util.Log
 import com.willjane.teabuddy.utils.models.Tea
 import io.realm.Realm
 
@@ -8,9 +9,12 @@ object TeaRealmDAO {
     val realm = Realm.getDefaultInstance()
 
     fun updateTeaList(teaList: List<Tea>){
+        Log.d("realm", "teaList: ${teaList.size}")
         realm.executeTransaction {realm ->
+            var i = 0
             teaList.forEach {tea ->
                 realm.copyToRealmOrUpdate(tea)
+                i++
             }
         }
     }

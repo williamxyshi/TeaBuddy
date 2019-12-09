@@ -15,7 +15,6 @@ import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 class EncyclopediaListAdapter(private val vm: MainActivityViewModel, private val context: Context): RecyclerView.Adapter<EncyclopediaListAdapter.EncyclopediaViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EncyclopediaViewHolder {
-
         return EncyclopediaViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cell_encyclopedia_item, parent, false)).apply {
             teaName = itemView.findViewById(R.id.encyclopedia_list_text)
             teaImage = itemView.findViewById(R.id.encyclopedia_list_image)
