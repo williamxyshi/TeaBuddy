@@ -10,7 +10,7 @@
 
 ### Features
 
-  - Pulls data from Google Cloud Firestore 
+  - Pulls tea and user data from Google Cloud Firestore 
   - Stores local data to Realm, allowing users to favorite teas for easy access
   - Supports SignIn/SignUp through Google, Facebook and Email/Password - allowing user data to be transferred between devices through the cloud
   - Provides images and a brief history of the tea
