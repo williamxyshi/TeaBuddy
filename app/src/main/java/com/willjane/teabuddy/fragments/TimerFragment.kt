@@ -53,7 +53,7 @@ class TeaTimerFragment: Fragment() {
 
         return rootView
     }
-
+    
     private fun initialize(){
         vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
         vm.currentActionPage.value = MainActivityViewModel.TEA_TIMER
@@ -108,6 +108,7 @@ class TeaTimerFragment: Fragment() {
     }
 
     private fun initPopup() {
+        stopTimer()
         setMinutes.value = (timerLength / 60000 % 10).toInt()
         setSeconds.value = (timerLength / 1000 % 60).toInt()
         setMinutes.minValue = 0
