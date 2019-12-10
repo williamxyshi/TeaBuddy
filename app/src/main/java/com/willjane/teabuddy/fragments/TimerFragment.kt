@@ -66,7 +66,7 @@ class TeaTimerFragment: Fragment() {
             stopTimer()
         }
 
-        openSetTimer.setOnClickListener {
+        openSetTime.setOnClickListener {
             initPopup()
         }
 
