@@ -7,12 +7,14 @@
   - View and favorite teas from around the world
   - Provides exact brew time, amount and temperature specifications for each tea
   - Supports user login and uploading custom teas
+  - Share, View and Interact with other users in the TeaBuddy community
 
 ### Features
 
   - Pulls tea and user data from Google Cloud Firestore 
   - Stores local data to Realm, allowing users to favorite teas for easy access
   - Supports SignIn/SignUp through Google, Facebook and Email/Password - allowing user data to be transferred between devices through the cloud
+  - Allows users (signed in) to post daily brews, view community posts and interact with other users
   - Displays URI images with Glide and provides a brief history of each tea from our database
   - Brew amount, temperature and time given to help achieve a perfect brew!
   - Timer feature allows users to set a custom time, or use a preset one
