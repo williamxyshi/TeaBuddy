@@ -17,6 +17,8 @@ import com.willjane.teabuddy.fragments.EncyclopediaFragment
 import com.willjane.teabuddy.fragments.TeaInformationFragment
 import com.willjane.teabuddy.fragments.TeaTimerFragment
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
+import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
+import com.willjane.teabuddy.utils.models.TeaBuddyUser
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -53,11 +55,13 @@ class MainActivity : AppCompatActivity() {
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build())
 
-// Create and launch sign-in intent
+    // Create and launch sign-in intent
         startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
+                .setLogo(R.drawable.ic_teacup)
+                .setTheme(R.style.AppTheme)
                 .build(),
             RC_SIGN_IN)
     }
@@ -70,7 +74,11 @@ class MainActivity : AppCompatActivity() {
 
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
-                val user = FirebaseAuth.getInstance().currentUser
+                val firebaseUser = FirebaseAuth.getInstance().currentUser
+
+                val user = vm.firebaseUserToTeaBuddyUser(firebaseUser)
+
+                vm.currentUser.value = user
                 Log.d(TAG, "logged in ")
                 // ...
             } else {
@@ -87,7 +95,16 @@ class MainActivity : AppCompatActivity() {
     private fun setUpVM(){
         Log.d(TAG, "setting up VM")
         vm = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-//        vm = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+
+        if(TeaUserAuthDAO.isUserSignedIn()){
+            val firebaseUser = TeaUserAuthDAO.getCurrentUser()
+
+            val user = vm.firebaseUserToTeaBuddyUser(firebaseUser)
+            user?.isNew = false
+
+            vm.currentUser.value = user
+        }
+
         vm.currentActionPage.observe(this, androidx.lifecycle.Observer {
             when(it){
                 MainActivityViewModel.DASHBOARD_PAGE->{
@@ -130,6 +147,17 @@ class MainActivity : AppCompatActivity() {
                 startAuthTask()
             }
         } )
+
+        vm.currentUser.observe(this, androidx.lifecycle.Observer{
+            if(it!= null){
+                if(it.isNew) {
+                    vm.teaFirestoreDAO.addUser(it)
+                    it.isNew = false
+                } else {
+                    vm.teaFirestoreDAO.updateUser(it)
+                }
+            }
+        })
     }
 
     private fun setUpNavigationBar(){

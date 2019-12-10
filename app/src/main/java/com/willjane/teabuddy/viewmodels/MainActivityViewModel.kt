@@ -3,15 +3,25 @@ package com.willjane.teabuddy.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.facebook.internal.Mutable
+import com.firebase.ui.auth.data.model.User
+import com.google.firebase.auth.FirebaseUser
 import com.willjane.teabuddy.utils.DAO.TeaFirestoreDao
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
+import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
 import com.willjane.teabuddy.utils.models.Tea
+import com.willjane.teabuddy.utils.models.TeaBuddyUser
 import io.realm.Realm
 
 class MainActivityViewModel(application: Application): AndroidViewModel(application) {
 
+    var currentUser: MutableLiveData<TeaBuddyUser?> = MutableLiveData(null)
+
     var currentActionPage: MutableLiveData<Int> = MutableLiveData()
     val realm = Realm.getDefaultInstance()
+
+    val isSignedIn: Boolean
+        get() = TeaUserAuthDAO.isUserSignedIn()
 
     val teaFirestoreDAO = TeaFirestoreDao()
 
@@ -33,6 +43,19 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     fun refreshTeaList(){
             teaListUpdated.value = false
             teaFirestoreDAO.retrieveTeaList(this)
+    }
+
+    fun firebaseUserToTeaBuddyUser(firebaseUser: FirebaseUser?): TeaBuddyUser?{
+
+       if(firebaseUser == null) return null
+
+        val user = TeaBuddyUser(firebaseUser.uid)
+        user.email = firebaseUser.email
+        user.name = firebaseUser.displayName
+        user.photoUrl = firebaseUser.photoUrl.toString()
+        user.emailVerified = firebaseUser.isEmailVerified
+
+        return user
     }
 
 

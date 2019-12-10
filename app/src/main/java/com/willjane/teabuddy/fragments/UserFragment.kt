@@ -11,9 +11,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.auth.AuthUI
 import com.willjane.teabuddy.MainActivity
 import com.willjane.teabuddy.R
 import com.willjane.teabuddy.adapters.TeaListAdapter
+import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class UserFragment: Fragment() {
@@ -29,9 +31,20 @@ class UserFragment: Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_user, container, false) as ViewGroup
 
         setUpVM()
+
         signInButton = rootView.findViewById(R.id.signInButton)
         signInButton.setOnClickListener {
+            if(vm.isSignedIn){
+                TeaUserAuthDAO.signUserOut(context?:return@setOnClickListener)
+            } else {
                 vm.launchLoginActivity.value = true
+            }
+        }
+
+        if(vm.isSignedIn){
+            signInButton.text = resources.getString(R.string.signOut)
+        } else {
+            signInButton.text = resources.getString(R.string.signIn)
         }
 
         return rootView
