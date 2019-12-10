@@ -10,5 +10,7 @@
     <string name="tea_buddy">Tea Buddy</string>
     <string name="builtBy">Built by Will and Jane</string>
     <string name="timetea">time your brew</string>
+    <string name="signOut">Sign Out</string>
+    <string name="signIn">Sign In</string>
 
 </resources>
