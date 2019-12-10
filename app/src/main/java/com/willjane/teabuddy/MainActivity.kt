@@ -98,12 +98,7 @@ class MainActivity : AppCompatActivity() {
         vm = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
         if(TeaUserAuthDAO.isUserSignedIn()){
-            val firebaseUser = TeaUserAuthDAO.getCurrentUser()
-
-            val user = vm.firebaseUserToTeaBuddyUser(firebaseUser)
-            user?.isNew = false
-
-            vm.currentUser.value = user
+            vm.currentUser.value = TeaUserRealmDAO.getUser()
         }
 
         vm.currentActionPage.observe(this, androidx.lifecycle.Observer {
@@ -155,7 +150,8 @@ class MainActivity : AppCompatActivity() {
                     vm.teaFirestoreDAO.addUser(it)
                     it.isNew = false
                 } else {
-                    vm.teaFirestoreDAO.updateUser(it)
+                    //TODO does this make sense?
+//                    vm.teaFirestoreDAO.updateUser(it)
                 }
                 TeaUserRealmDAO.updateTeaBuddyUser(it)
             }
