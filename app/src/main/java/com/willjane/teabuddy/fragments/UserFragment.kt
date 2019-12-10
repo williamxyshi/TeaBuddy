@@ -11,12 +11,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.firebase.ui.auth.AuthUI
 import com.willjane.teabuddy.MainActivity
 import com.willjane.teabuddy.R
 import com.willjane.teabuddy.adapters.TeaListAdapter
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
+import kotlinx.android.synthetic.main.fragment_user.*
 
 class UserFragment: Fragment() {
 
@@ -33,22 +35,35 @@ class UserFragment: Fragment() {
         setUpVM()
 
         signInButton = rootView.findViewById(R.id.signInButton)
-        signInButton.setOnClickListener {
-            if(vm.isSignedIn){
-                TeaUserAuthDAO.signUserOut(context?:return@setOnClickListener)
-            } else {
-                vm.launchLoginActivity.value = true
-            }
-        }
-
-        if(vm.isSignedIn){
-            signInButton.text = resources.getString(R.string.signOut)
-        } else {
-            signInButton.text = resources.getString(R.string.signIn)
-        }
 
         return rootView
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(vm.isSignedIn){
+            signInButtonContainer.visibility = View.GONE
+            Glide.with(context?:return).load(vm.currentUser.value?.photoUrl).into(userPic)
+            userName.text = vm.currentUser.value?.name
+            userEmail.text = vm.currentUser.value?.email
+
+        } else {
+            userPic.visibility = View.GONE
+            userName.visibility = View.GONE
+            userEmail.visibility = View.GONE
+            signInButtonContainer.visibility = View.VISIBLE
+            signInButton.text = resources.getString(R.string.signIn)
+        }
+
+        signOutButton.setOnClickListener {
+            TeaUserAuthDAO.signUserOut(context?:return@setOnClickListener)
+        }
+
+        signInButton.setOnClickListener {
+            vm.launchLoginActivity.value = true
+        }
+    }
+
     private fun setUpVM() {
         Log.d(MainActivity.TAG, "setting up VM")
         vm = ViewModelProviders.of(activity!!).get(MainActivityViewModel::class.java)

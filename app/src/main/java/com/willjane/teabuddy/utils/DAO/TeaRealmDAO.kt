@@ -6,7 +6,7 @@ import io.realm.Realm
 
 object TeaRealmDAO {
 
-    val realm = Realm.getDefaultInstance()
+    private val realm = Realm.getDefaultInstance()
 
     fun updateTeaList(teaList: List<Tea>){
         Log.d("realm", "teaList: ${teaList.size}")

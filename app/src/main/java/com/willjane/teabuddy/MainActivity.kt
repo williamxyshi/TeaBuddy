@@ -18,6 +18,7 @@ import com.willjane.teabuddy.fragments.TeaInformationFragment
 import com.willjane.teabuddy.fragments.TeaTimerFragment
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
+import com.willjane.teabuddy.utils.DAO.TeaUserRealmDAO
 import com.willjane.teabuddy.utils.models.TeaBuddyUser
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build())
 
-    // Create and launch sign-in intent
+        // Create and launch sign-in intent
         startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
@@ -156,6 +157,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     vm.teaFirestoreDAO.updateUser(it)
                 }
+                TeaUserRealmDAO.updateTeaBuddyUser(it)
             }
         })
     }
