@@ -8,6 +8,7 @@
     <string name="start">start</string>
     <string name="stop">stop</string>
     <string name="tea_buddy">Tea Buddy</string>
+    <string name="tea_buddy_world">Tea World</string>
     <string name="builtBy">Built by Will and Jane</string>
     <string name="timetea">time your brew</string>
     <string name="signOut">Sign Out</string>

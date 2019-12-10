@@ -11,7 +11,7 @@ class TeaFirestoreDao{
 
     private val firestore = FirebaseFirestore.getInstance()
 
-    fun getUserHashmap(user: TeaBuddyUser):HashMap<String, Any?>{
+    private fun getUserHashmap(user: TeaBuddyUser):HashMap<String, Any?>{
         val userToAdd = hashMapOf(
             "name" to user.name,
             "email" to user.email,
@@ -38,10 +38,21 @@ class TeaFirestoreDao{
 
     fun addUser(user: TeaBuddyUser){
 
+        /**
+         * Logging
+         */
+        Log.d(TAG, "user to add: ${user.email}, uid: ${user.uid}")
+        firestore.collection("users")
+            .get()
+            .addOnSuccessListener { result ->
+                Log.d(TAG, "user size: ${result.size()}")
+            }
+
+
         val docRef = firestore.collection("users").document(user.uid)
 
         docRef.get().addOnSuccessListener {document ->
-            if(document != null){
+            if(document.exists()){
                 Log.d(TAG, "user already exists")
             } else {
                 val userToAdd = getUserHashmap(user)

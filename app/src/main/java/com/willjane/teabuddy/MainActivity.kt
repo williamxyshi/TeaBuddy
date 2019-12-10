@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  encyclopediaFragment: EncyclopediaFragment
     private  lateinit var  teaTimerFragment: TeaTimerFragment
     private  lateinit var  userFragment: UserFragment
+    private  lateinit var  worldFragment: WorldFragment
 
     private lateinit var vm: MainActivityViewModel
 
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         encyclopediaFragment = EncyclopediaFragment()
         teaTimerFragment = TeaTimerFragment()
         userFragment = UserFragment()
+        worldFragment = WorldFragment()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
 
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun startAuthTask(){
+    private fun startAuthTask(){
         // Choose authentication providers
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
@@ -118,6 +120,9 @@ class MainActivity : AppCompatActivity() {
                 MainActivityViewModel.USER_PAGE->{
                     supportActionBar?.title = resources.getString(R.string.user)
                 }
+                MainActivityViewModel.TEA_WORLD_PAGE->{
+                    supportActionBar?.title = resources.getString(R.string.tea_buddy_world)
+                }
             }
         })
         vm.teaListUpdated.observe(this, androidx.lifecycle.Observer {
@@ -146,10 +151,13 @@ class MainActivity : AppCompatActivity() {
 
         vm.currentUser.observe(this, androidx.lifecycle.Observer{
             if(it!= null){
+                Log.d(TAG, "current user is: ${it.name}, email: ${it.email}")
+
                 if(it.isNew) {
                     vm.teaFirestoreDAO.addUser(it)
                     it.isNew = false
                 } else {
+                    Log.d(TAG, "not a new user")
                     //TODO does this make sense?
 //                    vm.teaFirestoreDAO.updateUser(it)
                 }
@@ -184,6 +192,13 @@ class MainActivity : AppCompatActivity() {
                     }
                     true
                 }
+                R.id.bottom_navigation_community->{
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragmentView, worldFragment).commit()
+                        addToBackStack(null)
+                    }
+                    true
+                }
                 R.id.bottom_navigation_user->{
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.fragmentView, userFragment).commit()
@@ -191,8 +206,6 @@ class MainActivity : AppCompatActivity() {
                     }
                     true
                 }
-
-
                 else -> {
 
                     false

@@ -17,6 +17,11 @@
         android:title="@string/teatimer"
         />
     <item
+        android:id="@+id/bottom_navigation_community"
+        android:icon="@drawable/ic_globe"
+        android:title="@string/tea_buddy_world"
+        />
+    <item
         android:id="@+id/bottom_navigation_user"
         android:icon="@drawable/ic_user"
         android:title="@string/user"

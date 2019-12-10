@@ -67,6 +67,7 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         const val TEA_TIMER = 2
         const val TEA_INFO_PAGE = 3
         const val USER_PAGE = 4
+        const val TEA_WORLD_PAGE = 5
     }
 
 
