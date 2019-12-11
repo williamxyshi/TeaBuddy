@@ -19,6 +19,7 @@ import com.willjane.teabuddy.fragments.TeaTimerFragment
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
 import com.willjane.teabuddy.utils.DAO.TeaUserRealmDAO
+import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.utils.models.TeaBuddyUser
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -164,6 +165,10 @@ class MainActivity : AppCompatActivity() {
                 TeaUserRealmDAO.updateTeaBuddyUser(it)
             }
         })
+    }
+
+    fun launchTeaInfoFragment(tea: Tea){
+
     }
 
     private fun setUpNavigationBar(){

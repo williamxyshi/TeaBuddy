@@ -14,4 +14,7 @@
     <string name="signOut">Sign Out</string>
     <string name="signIn">Sign In</string>
 
+    <!--    dialogues-->
+    <string name="notLoggedIn">Please Log In to access TeaWorld</string>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.willjane.teabuddy.viewmodels
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.facebook.internal.Mutable
@@ -9,35 +10,45 @@ import com.google.firebase.auth.FirebaseUser
 import com.willjane.teabuddy.utils.DAO.TeaFirestoreDao
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
+import com.willjane.teabuddy.utils.DAO.TeaUserRealmDAO
 import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.utils.models.TeaBuddyUser
 import io.realm.Realm
 
 class MainActivityViewModel(application: Application): AndroidViewModel(application) {
 
+    //current user that is logged into google authentication - retrieved from realm
     var currentUser: MutableLiveData<TeaBuddyUser?> = MutableLiveData(null)
 
+    //current fragment the activity is on
     var currentActionPage: MutableLiveData<Int> = MutableLiveData()
+
+    //Realm instance
     val realm = Realm.getDefaultInstance()
 
+    //is user signed into google auth
     val isSignedIn: Boolean
         get() = TeaUserAuthDAO.isUserSignedIn()
 
+    //access to the firestore database object for Tea model
     val teaFirestoreDAO = TeaFirestoreDao()
 
+    //list of teas retrieved from firestore
     var fireStoreTeaList = listOf<Tea>()
 
+    //total list of teas - this is retrieved from realm
     val teaList: List<Tea>
         get() = TeaRealmDAO.getTeaList()
 
+    //lise of teas favourited by user
     val favList: List<Tea>
         get() = TeaRealmDAO.getFavList()
 
-
-
+    //because google firestore call is async, sometimes its nice to know when the data is returned
     var teaListUpdated : MutableLiveData<Boolean> = MutableLiveData(false)
     var launchLoginActivity : MutableLiveData<Boolean> = MutableLiveData(false)
 
+    //launches TeaInfoFragment when set to a tea
     val currentTea : MutableLiveData<Tea> = MutableLiveData()
 
     fun refreshTeaList(){
@@ -58,6 +69,11 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         return user
     }
 
+    fun signUserOut(context: Context){
+        TeaUserAuthDAO.signUserOut(context)
+        currentUser.value = null
+        TeaUserRealmDAO.removeUser()
+    }
 
     companion object {
         const val TAG = "MainActivityViewModel"

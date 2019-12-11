@@ -18,6 +18,7 @@ import com.willjane.teabuddy.R
 import com.willjane.teabuddy.adapters.TeaListAdapter
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
+import kotlinx.android.synthetic.main.fragment_tea_world.*
 import kotlinx.android.synthetic.main.fragment_user.*
 
 /**
@@ -41,6 +42,13 @@ class WorldFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if(vm.isSignedIn){
+            notSignedIn.visibility = View.GONE
+
+
+        } else{
+            notSignedIn.visibility = View.VISIBLE
+        }
     }
 
     private fun setUpVM() {

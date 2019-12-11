@@ -31,6 +31,13 @@ object TeaUserRealmDAO {
         return user
     }
 
+    fun removeUser(){
+        realm.executeTransactionAsync {realm ->
+            val user = realm.where(TeaBuddyUser::class.java).findAll()
+            user.deleteAllFromRealm()
+        }
+    }
+
     private const val TAG = "TeaUserRealmDAO"
 
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import com.willjane.teabuddy.MainActivity
 import com.willjane.teabuddy.R
 import com.willjane.teabuddy.adapters.TeaListAdapter
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
+import com.willjane.teabuddy.utils.DAO.TeaUserRealmDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_user.*
 
@@ -41,12 +43,23 @@ class UserFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        flipUserFragment()
+        //have to observe here after view is createdf
+        vm.currentUser.observe(activity!!, Observer {
+            if(it != null ){
+                flipUserFragment()
+            } else {
+                flipUserFragment()
+            }
+        })
+    }
+
+    private fun flipUserFragment(){
         if(vm.isSignedIn){
             signInButtonContainer.visibility = View.GONE
             Glide.with(context?:return).load(vm.currentUser.value?.photoUrl).into(userPic)
             userName.text = vm.currentUser.value?.name
             userEmail.text = vm.currentUser.value?.email
-
         } else {
             userPic.visibility = View.GONE
             userName.visibility = View.GONE
@@ -57,7 +70,7 @@ class UserFragment: Fragment() {
         }
 
         signOutButton.setOnClickListener {
-            TeaUserAuthDAO.signUserOut(context?:return@setOnClickListener)
+            vm.signUserOut(context?:return@setOnClickListener)
         }
 
         signInButton.setOnClickListener {

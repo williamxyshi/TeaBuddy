@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.willjane.teabuddy.R
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
-import java.net.URL
 
 class TeaListAdapter(private val vm: MainActivityViewModel, private val context: Context, private val favList: Boolean = false): RecyclerView.Adapter<TeaListAdapter.TeaViewHolder>(){
 
@@ -31,6 +30,10 @@ class TeaListAdapter(private val vm: MainActivityViewModel, private val context:
 //            holder.teaImage.setImageBitmap(urlToBitmap(tea.imageUrl))
 //        DownloadImageTask(holder.teaImage).execute(tea.imageUrl)
         Glide.with(context).load(tea.imageUrl).into(holder.teaImage)
+
+        holder.teaImage.setOnClickListener {
+            vm.currentTea.value = tea
+        }
 
 //        picassoo.load("https://cdn.shopify.com/s/files/1/1329/3455/products/Ancient_Forest_Tea_burned.jpg?v=1489465824").placeholder(R.drawable.ic_teacup).into(holder.teaImage)
     }

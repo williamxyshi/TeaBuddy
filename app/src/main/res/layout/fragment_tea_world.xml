@@ -7,56 +7,21 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
-    <ImageView
-        android:id="@+id/userPic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ic_user"
-        />
-
-    <TextView
-        android:id="@+id/userName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userPic"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="placeholder"
-        android:textSize="20sp"
-        />
-
-    <TextView
-        android:id="@+id/userEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userName"
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="placeholder"
-        android:textSize="14sp"
-        />
-
-    <Button
-        android:id="@+id/signOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/purple"
-        android:textColor="@color/green"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="5dp"
-        android:text="@string/signOut"
-        android:textSize="12sp"/>
+<TextView
+    android:id="@+id/notSignedIn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="180dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:text="@string/notLoggedIn"
+    android:textSize="32sp"
+    android:fontFamily="@font/karla"
+    android:gravity="center"
+    android:visibility="gone"
+/>
 
 
 
@@ -64,25 +29,5 @@
 
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/signInButtonContainer"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/rounded_button_green">
-        <Button
-            android:id="@+id/signInButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/purple"
-            android:textColor="@color/green"
-            android:padding="10dp"
-            android:text="Sign In"
-            android:textSize="35sp"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
