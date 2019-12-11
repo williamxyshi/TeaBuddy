@@ -7,6 +7,61 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signedInContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/karla"
+                android:textSize="28sp"
+                android:text="userName"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/karla"
+                android:layout_marginStart="40dp"
+                android:textSize="28sp"
+                android:text="make a post:"/>
+
+            <ImageView
+                android:id="@+id/addPost"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_plus"/>
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/postsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
 <TextView
     android:id="@+id/notSignedIn"
     android:layout_width="wrap_content"
