@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide
 import com.firebase.ui.auth.AuthUI
 import com.willjane.teabuddy.MainActivity
 import com.willjane.teabuddy.R
+import com.willjane.teabuddy.adapters.CommunityPostAdapter
+import com.willjane.teabuddy.adapters.EncyclopediaListAdapter
 import com.willjane.teabuddy.adapters.TeaListAdapter
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
@@ -27,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_user.*
 class WorldFragment: Fragment() {
 
     private lateinit var  vm: MainActivityViewModel
+    private lateinit var  recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +39,10 @@ class WorldFragment: Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_tea_world, container, false) as ViewGroup
 
         setUpVM()
+        recyclerView = rootView.findViewById(R.id.postsRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        recyclerView.adapter = CommunityPostAdapter(vm, requireContext())
+
 
         return rootView
     }
@@ -43,11 +50,10 @@ class WorldFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vm.refreshPostsList()
+        recyclerView.adapter?.notifyDataSetChanged()
 
         if(vm.isSignedIn){
             notSignedIn.visibility = View.GONE
-
-
         } else{
             notSignedIn.visibility = View.VISIBLE
         }
