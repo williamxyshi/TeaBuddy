@@ -1,11 +1,11 @@
 package com.willjane.teabuddy.utils.models
 
 //this communitypost class handles all info needed to inflate a post view
-class CommunityPost(title: String, desc: String,  teaUser: TeaBuddyUser, hearts: Int) {
+class CommunityPost(title: String, desc: String,  _posterURL: String?, _posterName: String, hearts: Int) {
 
     //user information
-    val posterURL: String? = teaUser.photoUrl
-    val posterName: String? = teaUser.name
+    val posterURL: String? = _posterURL
+    val posterName: String? = _posterName
 
     //title: the title of the post
     //desc: The actual body- sort of how reddit does it
@@ -17,7 +17,5 @@ class CommunityPost(title: String, desc: String,  teaUser: TeaBuddyUser, hearts:
 
     //number of "likes" a post gets
     val postHearts: Int = hearts
-
-
 
 }

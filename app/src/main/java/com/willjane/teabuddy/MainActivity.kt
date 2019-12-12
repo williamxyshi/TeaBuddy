@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.fragmentView, dashboardFragment).commit()
 
         vm.refreshTeaList()
-
     }
 
     private fun startAuthTask(){

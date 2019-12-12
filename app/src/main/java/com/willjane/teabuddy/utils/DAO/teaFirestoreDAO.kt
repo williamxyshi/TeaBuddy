@@ -2,10 +2,11 @@ package com.willjane.teabuddy.utils.DAO
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.willjane.teabuddy.utils.models.CommunityPost
 import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.utils.models.TeaBuddyUser
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.tasks.await
 
 class TeaFirestoreDao{
 
@@ -22,6 +23,19 @@ class TeaFirestoreDao{
 
         return userToAdd
 
+    }
+
+    suspend fun getCommunityPosts(vm: MainActivityViewModel): List<CommunityPost>{
+
+        val postsList: MutableList<CommunityPost> = mutableListOf()
+
+        val posts = firestore.collection("community_posts").get().await()
+        posts.documents.forEach { doc ->
+                val post = formatToPost(doc.data?: hashMapOf())
+                postsList.add(post)
+        }
+
+        return postsList
     }
 
 
@@ -101,6 +115,15 @@ class TeaFirestoreDao{
             (hashMap["brewAmount"] as Double).toInt(),
             hashMap["parentTea"] as String,
             hashMap["image"] as String)
+    }
+
+    private fun formatToPost(hashMap: Map<String, Any>): CommunityPost{
+        return CommunityPost(hashMap["postTitle"] as String,
+            hashMap["postDescription"] as String,
+            hashMap["posterURL"] as String,
+            hashMap["posterName"] as String,
+            (hashMap["postHearts"] as Long).toInt()
+            )
     }
 
     companion object{

@@ -2,8 +2,11 @@ package com.willjane.teabuddy.viewmodels
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.facebook.internal.Mutable
 import com.firebase.ui.auth.data.model.User
 import com.google.firebase.auth.FirebaseUser
@@ -11,9 +14,11 @@ import com.willjane.teabuddy.utils.DAO.TeaFirestoreDao
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
 import com.willjane.teabuddy.utils.DAO.TeaUserRealmDAO
+import com.willjane.teabuddy.utils.models.CommunityPost
 import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.utils.models.TeaBuddyUser
 import io.realm.Realm
+import kotlinx.coroutines.launch
 
 class MainActivityViewModel(application: Application): AndroidViewModel(application) {
 
@@ -44,6 +49,9 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     val favList: List<Tea>
         get() = TeaRealmDAO.getFavList()
 
+    //list of community posts retrieved from firebase
+    var communityPosts = listOf<CommunityPost>()
+
     //because google firestore call is async, sometimes its nice to know when the data is returned
     var teaListUpdated : MutableLiveData<Boolean> = MutableLiveData(false)
     var launchLoginActivity : MutableLiveData<Boolean> = MutableLiveData(false)
@@ -54,6 +62,16 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     fun refreshTeaList(){
             teaListUpdated.value = false
             teaFirestoreDAO.retrieveTeaList(this)
+    }
+
+    fun refreshPostsList(){
+        viewModelScope.launch {
+            val postList = teaFirestoreDAO.getCommunityPosts(this@MainActivityViewModel)
+            Log.d(TAG, "post list updated: ${postList}")
+            communityPosts = postList
+        }
+
+
     }
 
     fun firebaseUserToTeaBuddyUser(firebaseUser: FirebaseUser?): TeaBuddyUser?{

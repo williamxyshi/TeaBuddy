@@ -42,6 +42,8 @@ class WorldFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vm.refreshPostsList()
+
         if(vm.isSignedIn){
             notSignedIn.visibility = View.GONE
 
@@ -57,6 +59,11 @@ class WorldFragment: Fragment() {
         vm.currentActionPage.value = MainActivityViewModel.TEA_WORLD_PAGE
     }
 
+    override fun onResume() {
+        super.onResume()
+        vm.refreshPostsList()
+
+    }
     companion object{
         private const val TAG = "TeaWorldFragment"
     }

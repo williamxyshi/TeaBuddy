@@ -84,6 +84,11 @@ class UserFragment: Fragment() {
         vm.currentActionPage.value = MainActivityViewModel.USER_PAGE
     }
 
+    override fun onResume() {
+        super.onResume()
+        //TODO: refresh user
+    }
+
     companion object{
         private const val TAG = "UserFragment"
     }
