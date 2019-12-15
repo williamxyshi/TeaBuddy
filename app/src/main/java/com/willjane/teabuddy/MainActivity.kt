@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         if(TeaUserAuthDAO.isUserSignedIn()){
             vm.currentUser.value = TeaUserRealmDAO.getUser()
         }
+        vm.refreshPostsList()
 
         vm.currentActionPage.observe(this, androidx.lifecycle.Observer {
             when(it){

@@ -25,6 +25,19 @@ class TeaFirestoreDao{
 
     }
 
+    private fun getPostHashmap(post: CommunityPost):HashMap<String, Any?>{
+        val userToAdd = hashMapOf(
+            "postTitle" to post.postTitle,
+            "postDescription" to post.postDesc,
+            "posterURL" to post.posterURL,
+            "posterName" to post.posterName,
+            "postHearts" to post.postHearts
+        )
+
+        return userToAdd
+
+    }
+
     suspend fun getCommunityPosts(vm: MainActivityViewModel): List<CommunityPost>{
 
         val postsList: MutableList<CommunityPost> = mutableListOf()
@@ -32,10 +45,22 @@ class TeaFirestoreDao{
         val posts = firestore.collection("community_posts").get().await()
         posts.documents.forEach { doc ->
                 val post = formatToPost(doc.data?: hashMapOf())
+                post.postId = doc.id
                 postsList.add(post)
         }
 
         return postsList
+    }
+
+    fun updateCommunityPost(post: CommunityPost){
+
+        val userToUpdate = getPostHashmap(post)
+
+        firestore.collection("community_posts").document(post.postId?:"").set(userToUpdate).addOnSuccessListener {
+            Log.d(TAG, "post successfully updated")
+        }.addOnFailureListener {
+            Log.w(TAG, "post failed to update", it)
+        }
     }
 
 

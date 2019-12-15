@@ -43,18 +43,27 @@ class WorldFragment: Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         recyclerView.adapter = CommunityPostAdapter(vm, requireContext())
 
-
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vm.refreshPostsList()
+        Log.d(TAG, "posts list size' ${vm.communityPosts.size}")
         recyclerView.adapter?.notifyDataSetChanged()
+        recyclerView.adapter = CommunityPostAdapter(vm, requireContext())
 
         if(vm.isSignedIn){
             notSignedIn.visibility = View.GONE
+            signedInContainer.visibility = View.VISIBLE
+            worldUserName.text = vm.currentUser.value?.name
+
+            newPostFab.setOnClickListener {
+
+
+            }
         } else{
+            signedInContainer.visibility = View.GONE
             notSignedIn.visibility = View.VISIBLE
         }
     }

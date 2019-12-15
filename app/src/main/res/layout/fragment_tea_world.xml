@@ -13,6 +13,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,36 +21,48 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/userName"
+                android:id="@+id/worldUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/karla"
-                android:textSize="28sp"
+                android:textSize="22sp"
+                android:textColor="@color/darkerGreen"
                 android:text="userName"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/karla"
-                android:layout_marginStart="40dp"
-                android:textSize="28sp"
-                android:text="make a post:"/>
-
-            <ImageView
-                android:id="@+id/addPost"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_plus"/>
         </LinearLayout>
+
+        <View
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/linebreak1"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gold"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/linebreak1"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/postsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"/>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/newPostFab"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/ic_plus"
+            app:fabCustomSize="65dp"
+            android:scaleType="fitXY"
+            app:maxImageSize="45dp"
+            android:elevation="4dp"
+            android:backgroundTint="@color/darkerGreen"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

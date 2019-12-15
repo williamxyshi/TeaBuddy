@@ -16,6 +16,8 @@ class CommunityPost(title: String, desc: String,  _posterURL: String?, _posterNa
     val postImage: String? = null
 
     //number of "likes" a post gets
-    val postHearts: Int = hearts
+    var postHearts: Int = hearts
+
+    var postId: String? = null
 
 }

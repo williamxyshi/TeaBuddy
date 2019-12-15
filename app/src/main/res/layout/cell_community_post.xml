@@ -27,13 +27,14 @@
         android:text="username"
         app:layout_constraintTop_toBottomOf="@id/imageContainer"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/imageContainer"
+        android:textSize="12sp"
         android:id="@+id/userName"/>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/imageContainer"
         app:layout_constraintTop_toTopOf="parent">
@@ -54,9 +55,9 @@
         android:id="@+id/heart"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_star"
+        android:src="@drawable/ic_heart"
         android:layout_marginEnd="10dp"
-        android:tint="@color/gold"
+        android:tint="@color/red"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

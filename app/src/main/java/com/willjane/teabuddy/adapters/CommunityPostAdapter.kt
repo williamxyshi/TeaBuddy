@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.willjane.teabuddy.R
-import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
 class CommunityPostAdapter(private val vm: MainActivityViewModel, private val context: Context): RecyclerView.Adapter<CommunityPostAdapter.CommunityPostViewHolder>(){
@@ -19,7 +18,7 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
             postTitle = itemView.findViewById(R.id.postTitle)
             userName = itemView.findViewById(R.id.userName)
             userImage = itemView.findViewById(R.id.postUserImage)
-            favStar = itemView.findViewById(R.id.favStar)
+            favHeart = itemView.findViewById(R.id.heart)
 
         }
     }
@@ -37,6 +36,12 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
 //        DownloadImageTask(holder.teaImage).execute(tea.imageUrl)
         Glide.with(context).load(post.posterURL).into(holder.userImage)
 
+        holder.favHeart.setOnClickListener {
+
+            post.postHearts += 1
+            vm.teaFirestoreDAO.updateCommunityPost(post)
+        }
+
 
     }
 
@@ -49,7 +54,7 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
         lateinit var userName: TextView
         lateinit var userImage: ImageView
 
-        lateinit var favStar : ImageView
+        lateinit var favHeart : ImageView
 
     }
 
