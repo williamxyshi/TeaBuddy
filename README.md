@@ -25,6 +25,3 @@ Planned features:
   - Community screen for sharing brews
   - Home screen widget for quick access to timer
   - Add more teas!!!!
-  ##
-  ##
-  <img src="https://github.com/williamxyshi/TeaBuddy/blob/master/assets/landingpage_screenshot.jpg" width="20%">
