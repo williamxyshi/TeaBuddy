@@ -21,7 +21,6 @@
 
 
 Planned features:
-  - Google Maps to help users find local tea shops
-  - Community screen for sharing brews
   - Home screen widget for quick access to timer
+  - Google Maps to help users find local tea shops
   - Add more teas!!!!
