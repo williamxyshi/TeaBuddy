@@ -22,8 +22,8 @@ class TeaTimerFragment: Fragment() {
     private lateinit var startTime: Button
     private lateinit var stopTime: Button
     private lateinit var openSetTime: Button
-    private var timerLength: Long = 0
-    private lateinit var countDownTimer: CountDownTimer
+    var timerLength: Long = 0
+    lateinit var countDownTimer: CountDownTimer
     private var isInitStart = false
     private lateinit var popupView: ViewGroup
     private lateinit var setMinutes: NumberPicker
@@ -53,7 +53,7 @@ class TeaTimerFragment: Fragment() {
 
         return rootView
     }
-    
+
     private fun initialize(){
         vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
         vm.currentActionPage.value = MainActivityViewModel.TEA_TIMER
@@ -81,14 +81,24 @@ class TeaTimerFragment: Fragment() {
                 timerLength = millisUntilFinished
             }
             override fun onFinish() {
-                //TODO do something when timer finishes
-                timerSec.text = "done"
+                // TODO: notification later
+                val text = "Done brewing!"
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(context, text, duration)
+                toast.show()
+                timerLength = 0
             }
 
         }
     }
     private fun startTimer() {
-        if (!isInitStart) {
+        if(timerLength <= 0) {
+            val text = "Please set your Tea Timer!"
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(context, text, duration)
+            toast.show()
+        }
+        else {
             initializeTimer(timerLength)
             countDownTimer.start()
         }
@@ -96,7 +106,6 @@ class TeaTimerFragment: Fragment() {
 
     private fun stopTimer() {
         countDownTimer.cancel()
-
     }
 
     private fun setMinText(millSec: Long) {
@@ -104,7 +113,11 @@ class TeaTimerFragment: Fragment() {
     }
 
     private fun setSecText(millSec: Long) {
-        timerSec.text = ((millSec / 1000) % 60 ).toString()
+        var text = ((millSec / 1000) % 60 ).toString()
+        if ((millSec / 1000 % 60) < 10) {
+            text = ("0").plus(text)
+        }
+        timerSec.text = text
     }
 
     private fun initPopup() {

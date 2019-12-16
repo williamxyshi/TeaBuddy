@@ -2,7 +2,7 @@
 ###### built by [Will](https://github.com/williamxyshi) and [Jane](https://github.com/jane-le) with :heart: and :tea:   
   <img src="https://github.com/williamxyshi/TeaBuddy/blob/master/app/src/main/res/drawable/ic_teacup.png" width="20%">
 
-### TeaBuddy is an Android App that helps users brew a better tea
+### TeaBuddy is an Android App that helps users explore the world of tea
 
   - View and favorite teas from around the world
   - Provides exact brew time, amount and temperature specifications for each tea
