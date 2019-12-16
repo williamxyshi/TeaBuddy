@@ -22,7 +22,7 @@ class TeaTimerFragment: Fragment() {
     private lateinit var startTime: Button
     private lateinit var stopTime: Button
     private lateinit var openSetTime: Button
-    private var timerLength: Long = 0
+    var timerLength: Long = 0
     private lateinit var countDownTimer: CountDownTimer
     private var isInitStart = false
     private lateinit var popupView: ViewGroup

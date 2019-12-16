@@ -137,13 +137,21 @@ class MainActivity : AppCompatActivity() {
         vm.currentTea.observe(this, androidx.lifecycle.Observer {
             if(it != null){
                 supportFragmentManager.beginTransaction().apply {
-                    replace(R.id.fragmentView, TeaInformationFragment(it)).commit()
+                    replace(R.id.fragmentView, TeaInformationFragment(it, teaTimerFragment)).commit()
                     addToBackStack(null)
                 }
             }
 
         })
+        vm.currentTeaTime.observe(this, androidx.lifecycle.Observer {
+            if(it != null){
+                supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.fragmentView, teaTimerFragment).commit()
+                    addToBackStack(null)
+                }
+            }
 
+        })
         vm.launchLoginActivity.observe(this, androidx.lifecycle.Observer{
             if(it == true){
                 startAuthTask()

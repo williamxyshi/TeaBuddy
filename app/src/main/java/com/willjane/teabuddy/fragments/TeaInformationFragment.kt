@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -16,7 +17,7 @@ import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_tea_information.*
 
-class TeaInformationFragment(private val tea: Tea) : Fragment() {
+class TeaInformationFragment(private val tea: Tea, private val timerFragment: TeaTimerFragment) : Fragment() {
 
     private lateinit var vm: MainActivityViewModel
 
@@ -26,6 +27,7 @@ class TeaInformationFragment(private val tea: Tea) : Fragment() {
     private lateinit var brewAmount: TextView
     private lateinit var brewTime: TextView
     private lateinit var teaFamilyText: TextView
+    private lateinit var brewBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +45,7 @@ class TeaInformationFragment(private val tea: Tea) : Fragment() {
         brewAmount = rootView.findViewById(R.id.brewAmount)
         brewTime = rootView.findViewById(R.id.brewTime)
         teaFamilyText = rootView.findViewById(R.id.teaFamilyText)
+        brewBtn = rootView.findViewById(R.id.brewBtn)
 
         Log.d(TAG, "binding data for tea info fragment")
 
@@ -53,6 +56,11 @@ class TeaInformationFragment(private val tea: Tea) : Fragment() {
         brewTime.text = tea.brewTime.toString()
 
         teaFamilyText.text = "this tea is a " + tea.parentTea + " tea"
+
+        brewBtn.setOnClickListener {
+            timerFragment.timerLength = (tea.brewTime * 60000).toLong()
+            vm.currentTeaTime.value = (tea.brewTime * 60000).toLong()
+        }
 
 
         return rootView

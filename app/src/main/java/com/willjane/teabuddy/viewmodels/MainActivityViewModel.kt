@@ -56,6 +56,9 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     //launches TeaInfoFragment when set to a tea
     val currentTea : MutableLiveData<Tea> = MutableLiveData()
 
+    //launches TeaTimerFragment when set timerLength
+    val currentTeaTime : MutableLiveData<Long> = MutableLiveData()
+
     fun refreshTeaList(){
             teaListUpdated.value = false
             teaFirestoreDAO.retrieveTeaList(this)
