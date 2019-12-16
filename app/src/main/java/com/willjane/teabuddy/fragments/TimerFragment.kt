@@ -23,7 +23,7 @@ class TeaTimerFragment: Fragment() {
     private lateinit var stopTime: Button
     private lateinit var openSetTime: Button
     var timerLength: Long = 0
-    private lateinit var countDownTimer: CountDownTimer
+    lateinit var countDownTimer: CountDownTimer
     private var isInitStart = false
     private lateinit var popupView: ViewGroup
     private lateinit var setMinutes: NumberPicker
@@ -113,7 +113,11 @@ class TeaTimerFragment: Fragment() {
     }
 
     private fun setSecText(millSec: Long) {
-        timerSec.text = ((millSec / 1000) % 60 ).toString()
+        var text = ((millSec / 1000) % 60 ).toString()
+        if (millSec < 10) {
+            text = ("0").plus(text)
+        }
+        timerSec.text = text
     }
 
     private fun initPopup() {
