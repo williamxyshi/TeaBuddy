@@ -53,7 +53,7 @@ class TeaTimerFragment: Fragment() {
 
         return rootView
     }
-    
+
     private fun initialize(){
         vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
         vm.currentActionPage.value = MainActivityViewModel.TEA_TIMER
@@ -81,14 +81,24 @@ class TeaTimerFragment: Fragment() {
                 timerLength = millisUntilFinished
             }
             override fun onFinish() {
-                //TODO do something when timer finishes
-                timerSec.text = "done"
+                // TODO: notification later
+                val text = "Done brewing!"
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(context, text, duration)
+                toast.show()
+                timerLength = 0
             }
 
         }
     }
     private fun startTimer() {
-        if (!isInitStart) {
+        if(timerLength <= 0) {
+            val text = "Please set your Tea Timer!"
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(context, text, duration)
+            toast.show()
+        }
+        else {
             initializeTimer(timerLength)
             countDownTimer.start()
         }
@@ -96,7 +106,6 @@ class TeaTimerFragment: Fragment() {
 
     private fun stopTimer() {
         countDownTimer.cancel()
-
     }
 
     private fun setMinText(millSec: Long) {
