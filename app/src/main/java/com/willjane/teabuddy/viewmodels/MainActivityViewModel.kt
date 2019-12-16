@@ -5,10 +5,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.facebook.internal.Mutable
-import com.firebase.ui.auth.data.model.User
 import com.google.firebase.auth.FirebaseUser
 import com.willjane.teabuddy.utils.DAO.TeaFirestoreDao
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
@@ -66,7 +63,7 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
 
     fun refreshPostsList(){
         viewModelScope.launch {
-            val postList = teaFirestoreDAO.getCommunityPosts(this@MainActivityViewModel)
+            val postList = teaFirestoreDAO.getCommunityPosts()
             Log.d(TAG, "post list updated: ${postList}")
             communityPosts = postList
         }

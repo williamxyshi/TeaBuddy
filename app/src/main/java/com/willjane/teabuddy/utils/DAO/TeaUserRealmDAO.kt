@@ -5,6 +5,12 @@ import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.utils.models.TeaBuddyUser
 import io.realm.Realm
 
+/**
+ * this object manages all interactions the application
+ * makes with the Realm Database related to TEAUSER objects
+ *
+ * TODO: refactor to use executetransactionasync and executetransactioncoroutines
+ */
 object TeaUserRealmDAO {
     private val realm = Realm.getDefaultInstance()
 

@@ -35,6 +35,7 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
         //current user uid is initialized because realm forbids accessing it from background threads
         val currentUserUid = vm.currentUser.value?.uid
 
+        //checks if the current post has already been liked by the user
         val likedByCurrentUser = post.likedUsers?.contains(currentUserUid)
 
         //sets the colour of the heart
@@ -45,7 +46,6 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
         }
 
         holder.postTitle.text = post.postTitle
-
         holder.userName.text = post.posterName
 
         //TODO: add hearts feature, and icons to comment and stuff
@@ -56,21 +56,26 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
         Glide.with(context).load(post.posterURL).into(holder.userImage)
 
         holder.favHeart.setOnClickListener {
-
+            //handles liking and unliking
+            //we increase/decrease the hearts immediately so the UI is less sluggish
             if(likedByCurrentUser == true) {
+
                 GlobalScope.launch {
                     vm.communityPosts[position].postHearts -= 1
                     vm.communityPosts[position].likedUsers?.remove(currentUserUid)
                     vm.teaFirestoreDAO.updateCommunityPost(vm.communityPosts[position])
                     vm.refreshPostsList()
                 }
+
             } else {
                 GlobalScope.launch {
+
                     vm.communityPosts[position].postHearts += 1
                     vm.communityPosts[position].likedUsers?.put(currentUserUid?:"", true)
                     vm.teaFirestoreDAO.updateCommunityPost(vm.communityPosts[position])
                     vm.refreshPostsList()
                 }
+
             }
 
             notifyDataSetChanged()
