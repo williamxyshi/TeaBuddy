@@ -19,6 +19,7 @@ import com.willjane.teabuddy.adapters.CommunityPostAdapter
 import com.willjane.teabuddy.adapters.EncyclopediaListAdapter
 import com.willjane.teabuddy.adapters.TeaListAdapter
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
+import com.willjane.teabuddy.utils.models.CommunityPost
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_tea_world.*
 import kotlinx.android.synthetic.main.fragment_user.*
@@ -26,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_user.*
 /**
  * Community of TeaBuddy - view, share and interact with other TeaBuddies
  */
-class WorldFragment: Fragment() {
+class WorldFragment: Fragment(), CommunityPostAdapter.CommunityPostInterface {
 
     private lateinit var  vm: MainActivityViewModel
     private lateinit var  recyclerView: RecyclerView
@@ -74,6 +75,9 @@ class WorldFragment: Fragment() {
         vm.currentActionPage.value = MainActivityViewModel.TEA_WORLD_PAGE
     }
 
+    override fun showPostPopup(anchorView: View, post: CommunityPost) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
     override fun onResume() {
         super.onResume()
         vm.refreshPostsList()

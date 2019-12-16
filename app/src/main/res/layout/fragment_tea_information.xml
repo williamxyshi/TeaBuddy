@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/teaName"
+        android:id="@+id/postName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="placeholder"
@@ -28,9 +28,9 @@
         android:textSize="32sp"/>
 
   <androidx.constraintlayout.widget.ConstraintLayout
-      android:id="@+id/teaInfoContainer"
+      android:id="@+id/userInfoContainer"
       android:layout_width="wrap_content"
-      app:layout_constraintTop_toBottomOf="@id/teaName"
+      app:layout_constraintTop_toBottomOf="@id/postName"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       android:layout_height="wrap_content">
@@ -101,7 +101,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/teaInfoContainer"/>
+        app:layout_constraintTop_toBottomOf="@id/userInfoContainer"/>
 
     <TextView
         android:id="@+id/teaDescription"

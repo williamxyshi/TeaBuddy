@@ -9,13 +9,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.willjane.teabuddy.R
 import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
-import kotlinx.android.synthetic.main.fragment_tea_information.*
 
 class TeaInformationFragment(private val tea: Tea, private val timerFragment: TeaTimerFragment) : Fragment() {
 
@@ -40,7 +38,7 @@ class TeaInformationFragment(private val tea: Tea, private val timerFragment: Te
         initialize()
 
         teaImage = rootView.findViewById(R.id.teaImage)
-        teaName = rootView.findViewById(R.id.teaName)
+        teaName = rootView.findViewById(R.id.postName)
         brewTemp = rootView.findViewById(R.id.brewTemp)
         brewAmount = rootView.findViewById(R.id.brewAmount)
         brewTime = rootView.findViewById(R.id.brewTime)
