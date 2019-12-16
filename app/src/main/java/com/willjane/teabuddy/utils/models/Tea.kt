@@ -3,7 +3,9 @@ package com.willjane.teabuddy.utils.models
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-//Tea class
+/**
+ * Tea model class (realm object) 
+ */
 open class Tea(_name: String = "green", _id: Int = -1,
                  _temp: Int  = -1, _time: Int = -1,
                  _amount: Int = -1, _parentTea: String = "green",

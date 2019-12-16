@@ -52,6 +52,9 @@ class MainActivity : AppCompatActivity() {
         vm.refreshTeaList()
     }
 
+    /**
+     * begins sign in process and starts signinactivity
+     */
     private fun startAuthTask(){
         // Choose authentication providers
         val providers = arrayListOf(
@@ -69,9 +72,13 @@ class MainActivity : AppCompatActivity() {
             RC_SIGN_IN)
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        /**
+         * activity result of  sign in activity from startAuthTask()
+         */
         if (requestCode == RC_SIGN_IN) {
             val response = IdpResponse.fromResultIntent(data)
 
@@ -95,6 +102,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * sets up mainactivityviewmodel and initializes all the observers
+     */
     private fun setUpVM(){
         Log.d(TAG, "setting up VM")
         vm = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
@@ -171,6 +181,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * manages the navigationbar
+     */
     private fun setUpNavigationBar(){
 
         navigationView.setOnNavigationItemSelectedListener {
