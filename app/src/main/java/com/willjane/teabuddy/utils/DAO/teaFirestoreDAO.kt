@@ -31,7 +31,8 @@ class TeaFirestoreDao{
             "postDescription" to post.postDesc,
             "posterURL" to post.posterURL,
             "posterName" to post.posterName,
-            "postHearts" to post.postHearts
+            "postHearts" to post.postHearts,
+            "likedUsers" to post.likedUsers
         )
 
         return userToAdd
@@ -46,21 +47,27 @@ class TeaFirestoreDao{
         posts.documents.forEach { doc ->
                 val post = formatToPost(doc.data?: hashMapOf())
                 post.postId = doc.id
+
+                val map: Map<String, Any> = doc.data?: hashMapOf()
+                val usersThatLIked:Map<String, Boolean> = map["likedUsers"]  as Map<String, Boolean>
+                post.likedUsers = usersThatLIked as HashMap<String, Boolean>
                 postsList.add(post)
+                Log.d(TAG, "users that liked: ${post.likedUsers}")
         }
 
         return postsList
     }
 
-    fun updateCommunityPost(post: CommunityPost){
+    /**
+     * updates a specific community post in the firestore database
+     * should be called from launch
+     */
+    suspend fun updateCommunityPost(post: CommunityPost){
 
         val userToUpdate = getPostHashmap(post)
 
-        firestore.collection("community_posts").document(post.postId?:"").set(userToUpdate).addOnSuccessListener {
-            Log.d(TAG, "post successfully updated")
-        }.addOnFailureListener {
-            Log.w(TAG, "post failed to update", it)
-        }
+        firestore.collection("community_posts").document(post.postId?:"").set(userToUpdate).await()
+        Log.d(TAG, "community post updated")
     }
 
 

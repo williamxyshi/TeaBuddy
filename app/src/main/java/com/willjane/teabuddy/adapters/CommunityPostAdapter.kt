@@ -6,10 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.willjane.teabuddy.R
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class CommunityPostAdapter(private val vm: MainActivityViewModel, private val context: Context): RecyclerView.Adapter<CommunityPostAdapter.CommunityPostViewHolder>(){
 
@@ -19,12 +24,26 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
             userName = itemView.findViewById(R.id.userName)
             userImage = itemView.findViewById(R.id.postUserImage)
             favHeart = itemView.findViewById(R.id.heart)
+            heartCount = itemView.findViewById(R.id.heartCount)
 
         }
     }
 
     override fun onBindViewHolder(holder: CommunityPostViewHolder, position: Int) {
         val post = vm.communityPosts[position]
+
+        //current user uid is initialized because realm forbids accessing it from background threads
+        val currentUserUid = vm.currentUser.value?.uid
+
+        val likedByCurrentUser = post.likedUsers?.contains(currentUserUid)
+
+        //sets the colour of the heart
+        if(likedByCurrentUser == true){
+            holder.favHeart.setColorFilter(context.resources.getColor(R.color.red))
+        } else {
+            holder.favHeart.setColorFilter(context.resources.getColor(R.color.white))
+        }
+
         holder.postTitle.text = post.postTitle
 
         holder.userName.text = post.posterName
@@ -38,9 +57,25 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
 
         holder.favHeart.setOnClickListener {
 
-            post.postHearts += 1
-            vm.teaFirestoreDAO.updateCommunityPost(post)
+            if(likedByCurrentUser == true) {
+                GlobalScope.launch {
+                    vm.communityPosts[position].postHearts -= 1
+                    vm.communityPosts[position].likedUsers?.remove(currentUserUid)
+                    vm.teaFirestoreDAO.updateCommunityPost(vm.communityPosts[position])
+                    vm.refreshPostsList()
+                }
+            } else {
+                GlobalScope.launch {
+                    vm.communityPosts[position].postHearts += 1
+                    vm.communityPosts[position].likedUsers?.put(currentUserUid?:"", true)
+                    vm.teaFirestoreDAO.updateCommunityPost(vm.communityPosts[position])
+                    vm.refreshPostsList()
+                }
+            }
+
+            notifyDataSetChanged()
         }
+        holder.heartCount.text = post.postHearts.toString()
 
 
     }
@@ -55,6 +90,7 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
         lateinit var userImage: ImageView
 
         lateinit var favHeart : ImageView
+        lateinit var heartCount : TextView
 
     }
 
