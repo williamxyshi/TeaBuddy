@@ -114,7 +114,7 @@ class TeaTimerFragment: Fragment() {
 
     private fun setSecText(millSec: Long) {
         var text = ((millSec / 1000) % 60 ).toString()
-        if (millSec < 10) {
+        if ((millSec / 1000 % 60) < 10) {
             text = ("0").plus(text)
         }
         timerSec.text = text
