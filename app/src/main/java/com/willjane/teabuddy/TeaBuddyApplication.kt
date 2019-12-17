@@ -8,6 +8,7 @@ import io.realm.RealmConfiguration
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.google.firebase.firestore.FirebaseFirestore
+import com.willjane.teabuddy.utils.Helpers
 
 class TeaBuddyApplication : Application() {
     override fun onCreate() {
@@ -20,6 +21,7 @@ class TeaBuddyApplication : Application() {
         Realm.init(this)
         val config = RealmConfiguration.Builder().name("TeaBuddy.realm").build()
         Realm.setDefaultConfiguration(config)
+        Helpers.init(applicationContext)
     }
 
     companion object{

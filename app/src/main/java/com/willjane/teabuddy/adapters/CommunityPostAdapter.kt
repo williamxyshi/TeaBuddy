@@ -1,6 +1,7 @@
 package com.willjane.teabuddy.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +18,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class CommunityPostAdapter(private val vm: MainActivityViewModel, private val context: Context): RecyclerView.Adapter<CommunityPostAdapter.CommunityPostViewHolder>() {
+class CommunityPostAdapter(private val vm: MainActivityViewModel, private val context: Context, private val listener: CommunityPostInterface): RecyclerView.Adapter<CommunityPostAdapter.CommunityPostViewHolder>() {
 
     interface CommunityPostInterface{
         fun showPostPopup(anchorView: View, post: CommunityPost)
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommunityPostViewHolder {
         return CommunityPostViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cell_community_post, parent, false)).apply {
@@ -88,7 +90,8 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
         holder.heartCount.text = post.postHearts.toString()
 
         holder.postTitle.setOnClickListener {
-           
+            Log.d(TAG, "tryng to show popup")
+            listener?.showPostPopup(it, post)
         }
 
 

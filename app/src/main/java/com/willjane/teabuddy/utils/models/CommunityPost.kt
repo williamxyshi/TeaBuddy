@@ -14,7 +14,7 @@ class CommunityPost(title: String, desc: String,  _posterURL: String?, _posterNa
      * desc: The actual body- sort of how reddit does it
      */
     val postTitle: String = title
-    val postDesc: String = title
+    val postDesc: String = desc
 
     //TODO: not supported - but allow the ability to upload images
     val postImage: String? = null
