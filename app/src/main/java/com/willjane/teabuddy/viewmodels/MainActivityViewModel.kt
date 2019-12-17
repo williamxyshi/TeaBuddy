@@ -96,6 +96,16 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         TeaUserRealmDAO.removeUser()
     }
 
+    fun newCommunityPost(title: String, desc: String){
+        val newPost = CommunityPost(title, desc, currentUser.value?.photoUrl, currentUser.value?.name?:return, 0)
+        newPost.likedUsers = mutableMapOf(Pair(currentUser.value?.uid?:return, true))
+        viewModelScope.launch {
+            teaFirestoreDAO.makeCommunityPost(newPost)
+            refreshPostsList()
+        }
+
+    }
+
     companion object {
         const val TAG = "MainActivityViewModel"
 

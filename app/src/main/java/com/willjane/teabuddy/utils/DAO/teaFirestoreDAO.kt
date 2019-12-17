@@ -45,9 +45,18 @@ class TeaFirestoreDao{
      */
     suspend fun updateCommunityPost(post: CommunityPost){
 
-        val userToUpdate = getPostHashmap(post)
+        val updatePost = getPostHashmap(post)
 
-        firestore.collection("community_posts").document(post.postId?:"").set(userToUpdate).await()
+        firestore.collection("community_posts").document(post.postId?:"").set(updatePost).await()
+        Log.d(TAG, "community post updated")
+    }
+
+    suspend fun makeCommunityPost(post: CommunityPost){
+
+        Log.d(TAG, "post likes: ${post.likedUsers}")
+        val newPost = getPostHashmap(post)
+
+        firestore.collection("community_posts").add(newPost).await()
         Log.d(TAG, "community post updated")
     }
 

@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -60,6 +61,7 @@ class WorldFragment: Fragment(), CommunityPostAdapter.CommunityPostInterface {
 
             newPostFab.setOnClickListener {
 
+                showMakePostPopup(it)
 
             }
         } else{
@@ -96,6 +98,26 @@ class WorldFragment: Fragment(), CommunityPostAdapter.CommunityPostInterface {
 
         val userImage: ImageView = view.findViewById(R.id.userImage)
         Glide.with(context?:return).load(post.posterURL).into(userImage)
+
+        popupWindow.isFocusable = true
+        val locationArray = IntArray(2)
+        view.getLocationOnScreen(locationArray)
+        popupWindow.showAtLocation(view, Gravity.CENTER,  locationArray[0], locationArray[1] + view.height)
+
+    }
+
+    private fun showMakePostPopup(anchorView: View){
+        val view = layoutInflater.inflate(R.layout.popup_make_communitypost, null)
+        val popupWindow = PopupWindow(view, Helpers.dpToPx(350), Helpers.dpToPx(600))
+        val postTitle: TextView = view.findViewById(R.id.postName)
+        val postDesc: TextView = view.findViewById(R.id.postDesc)
+
+        val endButton: Button = view.findViewById(R.id.makePostButton)
+        endButton.setOnClickListener {
+                vm.newCommunityPost(postTitle.text.toString(), postDesc.text.toString())
+                Log.d(TAG, "new post added")
+                recyclerView.adapter?.notifyDataSetChanged()
+        }
 
         popupWindow.isFocusable = true
         val locationArray = IntArray(2)
