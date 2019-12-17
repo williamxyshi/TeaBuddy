@@ -117,6 +117,7 @@ class WorldFragment: Fragment(), CommunityPostAdapter.CommunityPostInterface {
                 vm.newCommunityPost(postTitle.text.toString(), postDesc.text.toString())
                 Log.d(TAG, "new post added")
                 recyclerView.adapter?.notifyDataSetChanged()
+                popupWindow.dismiss()
         }
 
         popupWindow.isFocusable = true
