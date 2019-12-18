@@ -77,6 +77,9 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
 
     }
 
+    /**
+     * converts a FirebaseUser instance to a local TeaBuddyUser
+     */
     fun firebaseUserToTeaBuddyUser(firebaseUser: FirebaseUser?): TeaBuddyUser?{
 
        if(firebaseUser == null) return null
@@ -96,8 +99,11 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         TeaUserRealmDAO.removeUser()
     }
 
+    /**
+     * Creates a new community post and PUSHES IT TO FIRESTORE
+     */
     fun newCommunityPost(title: String, desc: String){
-        val newPost = CommunityPost(title, desc, currentUser.value?.photoUrl, currentUser.value?.name?:return, 0)
+        val newPost = CommunityPost(title, desc, currentUser.value?.photoUrl, currentUser.value?.name?:return, 1)
         newPost.likedUsers = mutableMapOf(Pair(currentUser.value?.uid?:return, true))
         viewModelScope.launch {
             teaFirestoreDAO.makeCommunityPost(newPost)

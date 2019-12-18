@@ -114,10 +114,14 @@ class WorldFragment: Fragment(), CommunityPostAdapter.CommunityPostInterface {
 
         val endButton: Button = view.findViewById(R.id.makePostButton)
         endButton.setOnClickListener {
+            if(postTitle.text.isNotBlank() && postDesc.text.isNotBlank()) {
                 vm.newCommunityPost(postTitle.text.toString(), postDesc.text.toString())
                 Log.d(TAG, "new post added")
                 recyclerView.adapter?.notifyDataSetChanged()
                 popupWindow.dismiss()
+            } else {
+                Helpers.makeCustomToast("Empty Title or Description")
+            }
         }
 
         popupWindow.isFocusable = true
