@@ -162,12 +162,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        /*
-        vm.timerLengthData.observe(this, androidx.lifecycle.Observer {
-            if(it != null){
-
-            }
-        }) */
         vm.launchLoginActivity.observe(this, androidx.lifecycle.Observer{
             if(it == true){
                 startAuthTask()

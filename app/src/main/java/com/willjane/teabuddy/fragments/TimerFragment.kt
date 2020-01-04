@@ -22,7 +22,6 @@ class TeaTimerFragment: Fragment() {
     private lateinit var startTime: Button
     private lateinit var stopTime: Button
     private lateinit var openSetTime: Button
-    lateinit var countDownTimer: CountDownTimer
     private lateinit var popupView: ViewGroup
     private lateinit var setMinutes: NumberPicker
     private lateinit var setSeconds: NumberPicker
@@ -46,6 +45,11 @@ class TeaTimerFragment: Fragment() {
 
         initialize()
 
+        vm.timerLength.observe(this, androidx.lifecycle.Observer {
+            setSecText(vm.timerLength.value ?: 0)
+            setMinText(vm.timerLength.value ?: 0)
+        })
+
         return rootView
     }
 
@@ -55,7 +59,6 @@ class TeaTimerFragment: Fragment() {
 
         setMinText(vm.timerLength.value ?: 0)
         setSecText(vm.timerLength.value ?: 0)
-        initializeTimer(vm.timerLength.value ?: 0)
 
         startTime.setOnClickListener {
             startTimer()
@@ -71,24 +74,6 @@ class TeaTimerFragment: Fragment() {
 
     }
 
-    private fun initializeTimer(timeLeft : Long) {
-        countDownTimer = object : CountDownTimer(timeLeft, 1000) {
-
-            override fun onTick(millisUntilFinished: Long) {
-                setMinText(millisUntilFinished)
-                setSecText(millisUntilFinished)
-                vm.timerLength.value = millisUntilFinished
-            }
-            override fun onFinish() {
-                val text = "Done brewing!"
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(context, text, duration)
-                toast.show()
-                vm.timerLength.value = 0
-            }
-
-        }
-    }
     private fun startTimer() {
         if(vm.timerLength.value == null) {
             val text = "Please set your Tea Timer!"
@@ -97,13 +82,13 @@ class TeaTimerFragment: Fragment() {
             toast.show()
         }
         else {
-            initializeTimer(vm.timerLength.value ?: 0)
-            countDownTimer.start()
+            vm.initializeTimer(vm.timerLength.value ?: 0)
+            vm.countDownTimer.start()
         }
     }
 
     private fun stopTimer() {
-        countDownTimer.cancel()
+        vm.countDownTimer.cancel()
     }
 
     private fun setMinText(millSec: Long) {

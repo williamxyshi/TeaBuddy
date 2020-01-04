@@ -84,7 +84,7 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
 
     var timerLength : MutableLiveData<Long> = MutableLiveData()
 
-    var countDownTimer = object : CountDownTimer(0, 1000) {
+    var countDownTimer = object : CountDownTimer(timerLength.value ?: 0, 1000) {
         override fun onTick(millisUntilFinished: Long) {
             timerLength.value = millisUntilFinished
         }
@@ -93,7 +93,18 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         }
 
     }
+    fun initializeTimer(timeLeft: Long) {
+        countDownTimer.cancel()
+        countDownTimer = object : CountDownTimer(timeLeft, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                timerLength.value = millisUntilFinished
+            }
+            override fun onFinish() {
+                timerLength.value = 0
+            }
 
+        }
+    }
     /**
      * converts a FirebaseUser instance to a local TeaBuddyUser
      */
