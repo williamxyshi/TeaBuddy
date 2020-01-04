@@ -15,7 +15,7 @@ import com.willjane.teabuddy.R
 import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 
-class TeaInformationFragment(private val tea: Tea, private val timerFragment: TeaTimerFragment) : Fragment() {
+class TeaInformationFragment(private val tea: Tea) : Fragment() {
 
     private lateinit var vm: MainActivityViewModel
 
@@ -56,8 +56,8 @@ class TeaInformationFragment(private val tea: Tea, private val timerFragment: Te
         teaFamilyText.text = "this tea is a " + tea.parentTea + " tea"
 
         brewBtn.setOnClickListener {
-            timerFragment.timerLength = (tea.brewTime * 60000).toLong()
             vm.currentTeaTime.value = (tea.brewTime * 60000).toLong()
+            vm.timerLength = (tea.brewTime * 60000).toLong()
         }
 
 

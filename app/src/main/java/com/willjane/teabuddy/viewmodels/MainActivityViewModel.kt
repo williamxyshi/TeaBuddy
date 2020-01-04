@@ -2,7 +2,9 @@ package com.willjane.teabuddy.viewmodels
 
 import android.app.Application
 import android.content.Context
+import android.os.CountDownTimer
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -56,9 +58,6 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     //launches TeaInfoFragment when set to a tea
     val currentTea : MutableLiveData<Tea> = MutableLiveData()
 
-    //launches TeaTimerFragment when set timerLength
-    val currentTeaTime : MutableLiveData<Long> = MutableLiveData()
-
     //launches TeaInfoFragment when set to a tea
     val currentPost : MutableLiveData<CommunityPost> = MutableLiveData()
 
@@ -74,6 +73,24 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
             communityPosts = postList
         }
 
+
+    }
+    /**
+     *  countDownTimer Utils
+     */
+
+    //launches TeaTimerFragment when set timerLength
+    val currentTeaTime : MutableLiveData<Long> = MutableLiveData()
+
+    var timerLength : Long = 0
+
+    var countDownTimer = object : CountDownTimer(timerLength, 1000) {
+        override fun onTick(millisUntilFinished: Long) {
+            timerLength = millisUntilFinished
+        }
+        override fun onFinish() {
+            timerLength = 0
+        }
 
     }
 

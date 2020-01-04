@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
         vm.currentTea.observe(this, androidx.lifecycle.Observer {
             if(it != null){
                 supportFragmentManager.beginTransaction().apply {
-                    replace(R.id.fragmentView, TeaInformationFragment(it, teaTimerFragment)).commit()
+                    replace(R.id.fragmentView, TeaInformationFragment(it)).commit()
                     addToBackStack(null)
                 }
             }
@@ -183,10 +183,6 @@ class MainActivity : AppCompatActivity() {
                 TeaUserRealmDAO.updateTeaBuddyUser(it)
             }
         })
-    }
-
-    fun launchTeaInfoFragment(tea: Tea){
-
     }
 
     /**

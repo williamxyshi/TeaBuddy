@@ -22,7 +22,6 @@ class TeaTimerFragment: Fragment() {
     private lateinit var startTime: Button
     private lateinit var stopTime: Button
     private lateinit var openSetTime: Button
-    var timerLength: Long = 0
     lateinit var countDownTimer: CountDownTimer
     private var isInitStart = false
     private lateinit var popupView: ViewGroup
@@ -46,9 +45,6 @@ class TeaTimerFragment: Fragment() {
         setMinutes = popupView.findViewById(R.id.setMinutes)
         setSeconds = popupView.findViewById(R.id.setSeconds)
 
-        setMinText(timerLength)
-        setSecText(timerLength)
-        initializeTimer(timerLength)
         initialize()
 
         return rootView
@@ -57,7 +53,9 @@ class TeaTimerFragment: Fragment() {
     private fun initialize(){
         vm = ViewModelProviders.of(activity?:return).get(MainActivityViewModel::class.java)
         vm.currentActionPage.value = MainActivityViewModel.TEA_TIMER
-
+        setMinText(vm.timerLength)
+        setSecText(vm.timerLength)
+        initializeTimer(vm.timerLength)
         startTime.setOnClickListener {
             startTimer()
         }
@@ -78,7 +76,7 @@ class TeaTimerFragment: Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 setMinText(millisUntilFinished)
                 setSecText(millisUntilFinished)
-                timerLength = millisUntilFinished
+                vm.timerLength = millisUntilFinished
             }
             override fun onFinish() {
                 // TODO: notification later
@@ -86,20 +84,20 @@ class TeaTimerFragment: Fragment() {
                 val duration = Toast.LENGTH_SHORT
                 val toast = Toast.makeText(context, text, duration)
                 toast.show()
-                timerLength = 0
+                vm.timerLength = 0
             }
 
         }
     }
     private fun startTimer() {
-        if(timerLength <= 0) {
+        if(vm.timerLength <= 0) {
             val text = "Please set your Tea Timer!"
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(context, text, duration)
             toast.show()
         }
         else {
-            initializeTimer(timerLength)
+            initializeTimer(vm.timerLength)
             countDownTimer.start()
         }
     }
@@ -122,8 +120,8 @@ class TeaTimerFragment: Fragment() {
 
     private fun initPopup() {
         stopTimer()
-        setMinutes.value = (timerLength / 60000 % 10).toInt()
-        setSeconds.value = (timerLength / 1000 % 60).toInt()
+        setMinutes.value = (vm.timerLength / 60000 % 10).toInt()
+        setSeconds.value = (vm.timerLength / 1000 % 60).toInt()
         setMinutes.minValue = 0
         setMinutes.maxValue = 5
         setSeconds.minValue = 0
@@ -137,9 +135,9 @@ class TeaTimerFragment: Fragment() {
         }
         val setTimer = popupView.findViewById<Button>(R.id.setTimer)
         setTimer.setOnClickListener {
-            timerLength = (setMinutes.value * 60000 + setSeconds.value * 1000).toLong()
-            setMinText(timerLength)
-            setSecText(timerLength)
+            vm.timerLength = (setMinutes.value * 60000 + setSeconds.value * 1000).toLong()
+            setMinText(vm.timerLength)
+            setSecText(vm.timerLength)
             window.dismiss()
         }
         window.showAtLocation(openSetTime, Gravity.CENTER,0,0)
