@@ -82,14 +82,14 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
     //launches TeaTimerFragment when set timerLength
     val currentTeaTime : MutableLiveData<Long> = MutableLiveData()
 
-    var timerLength : Long = 0
+    var timerLength : MutableLiveData<Long> = MutableLiveData()
 
-    var countDownTimer = object : CountDownTimer(timerLength, 1000) {
+    var countDownTimer = object : CountDownTimer(0, 1000) {
         override fun onTick(millisUntilFinished: Long) {
-            timerLength = millisUntilFinished
+            timerLength.value = millisUntilFinished
         }
         override fun onFinish() {
-            timerLength = 0
+            timerLength.value = 0
         }
 
     }

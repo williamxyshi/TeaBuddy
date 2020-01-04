@@ -57,7 +57,7 @@ class TeaInformationFragment(private val tea: Tea) : Fragment() {
 
         brewBtn.setOnClickListener {
             vm.currentTeaTime.value = (tea.brewTime * 60000).toLong()
-            vm.timerLength = (tea.brewTime * 60000).toLong()
+            vm.timerLength.value = (tea.brewTime * 60000).toLong()
         }
 
 
