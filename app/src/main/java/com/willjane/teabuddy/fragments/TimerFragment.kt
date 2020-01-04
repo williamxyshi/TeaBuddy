@@ -82,7 +82,7 @@ class TeaTimerFragment: Fragment() {
             toast.show()
         }
         else {
-            vm.initializeTimer(vm.timerLength.value ?: 0)
+            vm.setTimerLength(vm.timerLength.value ?: 0)
             vm.countDownTimer.start()
         }
     }

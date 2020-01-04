@@ -75,15 +75,14 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
 
 
     }
-    /**
-     *  countDownTimer Utils
-     */
 
-    //launches TeaTimerFragment when set timerLength
+    //launches TeaTimerFragment when
     val currentTeaTime : MutableLiveData<Long> = MutableLiveData()
 
+    // updates the timer text
     var timerLength : MutableLiveData<Long> = MutableLiveData()
 
+    // initialization of countdowntimer
     var countDownTimer = object : CountDownTimer(timerLength.value ?: 0, 1000) {
         override fun onTick(millisUntilFinished: Long) {
             timerLength.value = millisUntilFinished
@@ -93,7 +92,10 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         }
 
     }
-    fun initializeTimer(timeLeft: Long) {
+    /**
+     * cancels previous instance of countdowntimer and creates a new one with the given time
+     */
+    fun setTimerLength(timeLeft: Long) {
         countDownTimer.cancel()
         countDownTimer = object : CountDownTimer(timeLeft, 1000) {
             override fun onTick(millisUntilFinished: Long) {
