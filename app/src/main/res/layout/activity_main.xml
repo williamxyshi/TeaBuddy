@@ -26,8 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/backgroundColorAccent"
+        android:background="@color/backgroundColor"
         app:menu="@menu/bottom_navigation_view_menu"
+        android:elevation="10dp"
         />
 
 

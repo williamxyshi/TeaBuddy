@@ -28,7 +28,7 @@
         android:fontFamily="@font/karla"
         android:layout_marginTop="10dp"
         android:text="tea name"
-        android:textColor="@color/gold"
+        android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintLeft_toLeftOf="@id/imageContainer"
         app:layout_constraintRight_toRightOf="@id/imageContainer"

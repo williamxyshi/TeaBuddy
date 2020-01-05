@@ -44,7 +44,7 @@ class UserFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         flipUserFragment()
-        //have to observe here after view is createdf
+        //have to observe here after view is created
         vm.currentUser.observe(activity!!, Observer {
             if(it != null ){
                 flipUserFragment()

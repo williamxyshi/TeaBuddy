@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -22,6 +23,8 @@ class DashboardFragment : Fragment() {
 
     private lateinit var recRecyclerView: RecyclerView
 
+    private lateinit var welcomeText: TextView
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,6 +33,11 @@ class DashboardFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_dashboard, container, false) as ViewGroup
 
         initialize()
+
+        welcomeText = rootView.findViewById(R.id.welcomeText)
+        if (vm.currentUser.value != null) {
+            welcomeText.text = ("Welcome back ").plus(vm.currentUser.value?.name).plus("!")
+        }
 
         favRecyclerView = rootView.findViewById(R.id.favouritesRecyclerView)
         vm.refreshTeaList()
