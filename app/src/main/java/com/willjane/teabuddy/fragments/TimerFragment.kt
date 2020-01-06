@@ -92,7 +92,11 @@ class TeaTimerFragment: Fragment() {
     }
 
     private fun setMinText(millSec: Long) {
-        timerMins.text = ((millSec / 60000) % 10).toString()
+        var text = ((millSec / 60000) % 10).toString()
+        if ((millSec / 60000 % 10) < 10) {
+            text = ("0").plus(text)
+        }
+        timerMins.text = text
     }
 
     private fun setSecText(millSec: Long) {
@@ -108,7 +112,7 @@ class TeaTimerFragment: Fragment() {
         setMinutes.value = (vm.timerLength.value ?: 0 / 60000 % 10).toInt()
         setSeconds.value = (vm.timerLength.value ?: 0 / 1000 % 60).toInt()
         setMinutes.minValue = 0
-        setMinutes.maxValue = 5
+        setMinutes.maxValue = 9
         setSeconds.minValue = 0
         setSeconds.maxValue = 59
 
