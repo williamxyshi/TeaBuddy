@@ -16,6 +16,7 @@
     <string name="home_favourites">Favourites</string>
     <string name="home_welcome">Welcome Tea Lover!</string>
     <string name="home_brew">Pick your brew</string>
+    <string name="timer_text">Let\'s start brewing!</string>
     <!--    dialogues-->
     <string name="notLoggedIn">Please Log In to access TeaWorld</string>
 
