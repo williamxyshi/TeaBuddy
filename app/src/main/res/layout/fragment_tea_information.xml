@@ -6,16 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
+    android:padding="30dp"
     android:background="@color/backgroundColor">
 
 
     <ImageView
         android:id="@+id/teaImage"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:src="@drawable/ic_teacup"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/teaFamilyText"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/postName"
@@ -25,17 +29,33 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/teaImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/teaImage"
         android:textSize="32sp"/>
+
+    <TextView
+        android:id="@+id/teaFamilyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="@color/purple"
+        app:layout_constraintTop_toBottomOf="@id/postName"/>
 
   <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/userInfoContainer"
       android:layout_width="wrap_content"
-      app:layout_constraintTop_toBottomOf="@id/postName"
+      app:layout_constraintTop_toBottomOf="@id/teaImage"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginTop="15dp"
+      android:layout_marginBottom="15dp"
       android:layout_height="wrap_content">
         <ImageView
+            android:clickable="true"
+            android:longClickable="true"
             android:id="@+id/thermometer"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -94,17 +114,6 @@
   </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/teaFamilyText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="this tea is a"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/userInfoContainer"/>
-
-    <TextView
         android:id="@+id/postDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,7 +124,7 @@
 
 This lot is exclusive to our tea house and produced according to our specifications."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/teaFamilyText"/>
+        app:layout_constraintTop_toBottomOf="@id/userInfoContainer"/>
 
 
     <Button
@@ -127,13 +136,13 @@ This lot is exclusive to our tea house and produced according to our specificati
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
         android:text="Brew"
-        android:padding="20dp"
-        android:textColor="@color/black"
+        android:padding="15dp"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:gravity="center_vertical"
         android:fontFamily="@font/font"
-        android:textSize="36sp"
-        android:background="@color/lightGreen"/>
+        android:textSize="24sp"
+        android:background="@color/purple"/>
 
 
 

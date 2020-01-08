@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30dp"
     android:background="@color/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,8 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/karla"
-                android:textSize="22sp"
-                android:textColor="@color/darkerGreen"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="userName"/>
         </LinearLayout>
 
@@ -61,7 +63,7 @@
             android:scaleType="fitXY"
             app:maxImageSize="45dp"
             android:elevation="4dp"
-            android:backgroundTint="@color/darkerGreen"
+            android:backgroundTint="@color/purple"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.TooltipCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -26,6 +27,10 @@ class TeaInformationFragment(private val tea: Tea) : Fragment() {
     private lateinit var brewTime: TextView
     private lateinit var teaFamilyText: TextView
     private lateinit var brewBtn: Button
+    private lateinit var tempImage: ImageView
+    private lateinit var scaleImage: ImageView
+    private lateinit var timeImage: ImageView
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +49,12 @@ class TeaInformationFragment(private val tea: Tea) : Fragment() {
         brewTime = rootView.findViewById(R.id.brewTime)
         teaFamilyText = rootView.findViewById(R.id.teaFamilyText)
         brewBtn = rootView.findViewById(R.id.brewBtn)
+        tempImage = rootView.findViewById(R.id.thermometer)
+        scaleImage = rootView.findViewById(R.id.scale)
+        timeImage = rootView.findViewById(R.id.time)
+        TooltipCompat.setTooltipText(tempImage, "Brew temperature(°C)")
+        TooltipCompat.setTooltipText(scaleImage, "Brew amount(grams)")
+        TooltipCompat.setTooltipText(timeImage, "Brew time(minutes)")
 
         Log.d(TAG, "binding data for tea info fragment")
 
@@ -53,7 +64,7 @@ class TeaInformationFragment(private val tea: Tea) : Fragment() {
         brewAmount.text = tea.brewAmount.toString()
         brewTime.text = tea.brewTime.toString()
 
-        teaFamilyText.text = "this tea is a " + tea.parentTea + " tea"
+        teaFamilyText.text = (tea.parentTea + " Tea").capitalize()
 
         brewBtn.setOnClickListener {
             vm.currentTeaTime.value = (tea.brewTime * 60000).toLong()

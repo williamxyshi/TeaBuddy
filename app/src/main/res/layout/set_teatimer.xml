@@ -34,7 +34,7 @@
             android:id="@+id/setTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/purpleDark"
+            android:background="@color/purple"
             android:fontFamily="@font/font"
             android:text="Set"
             android:textColor="@color/white"
@@ -44,7 +44,7 @@
             />
         <Button
             android:layout_margin="10dp"
-            android:background="@color/purpleDark"
+            android:background="@color/purple"
             android:id="@+id/closeSetTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

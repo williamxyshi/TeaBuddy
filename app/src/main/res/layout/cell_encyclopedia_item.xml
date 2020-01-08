@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:padding="20dp">
 
     <FrameLayout
         android:id="@+id/imageContainer"
@@ -28,20 +28,31 @@
         android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/imageContainer"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/teaNameContainer">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/encyclopedia_list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/karla"
-            android:gravity="center_vertical"
+            android:gravity="top"
             android:text="tea name"
-            android:textColor="@color/gold"
-            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
             android:textStyle="bold" />
     </FrameLayout>
-
+    <TextView
+        android:id="@+id/encyclopedia_list_parent"
+        app:layout_constraintLeft_toLeftOf="@id/teaNameContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/karla"
+        android:gravity="bottom"
+        android:text="Parent tea Name"
+        android:textColor="@color/purple"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/teaNameContainer"/>
     <ImageView
         android:id="@+id/favStar"
         android:layout_width="30dp"

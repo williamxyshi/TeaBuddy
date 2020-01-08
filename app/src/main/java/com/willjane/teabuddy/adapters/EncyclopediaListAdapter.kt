@@ -19,17 +19,19 @@ class EncyclopediaListAdapter(private val vm: MainActivityViewModel, private val
             teaName = itemView.findViewById(R.id.encyclopedia_list_text)
             teaImage = itemView.findViewById(R.id.encyclopedia_list_image)
             favStar = itemView.findViewById(R.id.favStar)
+            parentTeaName = itemView.findViewById(R.id.encyclopedia_list_parent)
         }
     }
 
     override fun onBindViewHolder(holder: EncyclopediaViewHolder, position: Int) {
         val tea = vm.teaList[position]
         holder.teaName.text = tea.teaName
+        holder.parentTeaName.text = tea.parentTea.capitalize()
 
         val isFav = TeaRealmDAO.isFav(tea.teaId)
 
         if (isFav){
-            holder.favStar.setColorFilter(context.getColor(R.color.deepGold))
+            holder.favStar.setColorFilter(context.getColor(R.color.purpleDark))
         } else {
             holder.favStar.setColorFilter(context.getColor(R.color.white))
         }
@@ -58,7 +60,7 @@ class EncyclopediaListAdapter(private val vm: MainActivityViewModel, private val
     inner class EncyclopediaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         lateinit var teaName: TextView
         lateinit var teaImage: ImageView
-
+        lateinit var parentTeaName: TextView
         lateinit var favStar : ImageView
 
     }
