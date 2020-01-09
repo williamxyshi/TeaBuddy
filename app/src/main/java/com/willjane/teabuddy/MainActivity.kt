@@ -155,6 +155,7 @@ class MainActivity : AppCompatActivity() {
         })
         vm.currentTeaTime.observe(this, androidx.lifecycle.Observer {
             if(it != null){
+                vm.countDownTimer.cancel()
                 supportFragmentManager.beginTransaction().apply {
                     replace(R.id.fragmentView, teaTimerFragment).commit()
                     addToBackStack(null)

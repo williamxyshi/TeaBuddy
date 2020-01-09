@@ -12,6 +12,7 @@ import com.willjane.teabuddy.viewmodels.MainActivityViewModel
 import android.os.CountDownTimer
 import android.view.Gravity
 import android.widget.*
+import com.willjane.teabuddy.utils.Helpers
 import kotlinx.android.synthetic.main.fragment_teatimer.*
 
 
@@ -76,10 +77,7 @@ class TeaTimerFragment: Fragment() {
 
     private fun startTimer() {
         if(vm.timerLength.value == null) {
-            val text = "Please set your Tea Timer!"
-            val duration = Toast.LENGTH_SHORT
-            val toast = Toast.makeText(context, text, duration)
-            toast.show()
+            Helpers.makeCustomToast("Please set your Tea Timer!")
         }
         else {
             vm.setTimerLength(vm.timerLength.value ?: 0)

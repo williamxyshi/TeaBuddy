@@ -5,15 +5,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColorAccent">
+    android:background="@color/light_yellow">
 
 
     <ImageView
         android:id="@+id/postImage"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:padding="25dp"
+        android:layout_height="150dp"
         android:src="@drawable/ic_teacup"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postName"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
@@ -22,17 +23,19 @@
         android:layout_height="wrap_content"
         android:text="placeholder"
         android:textStyle="bold"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/postImage"
+        app:layout_constraintTop_toBottomOf="@id/userInfoContainer"
         android:textSize="24sp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/heartContainer"
         android:layout_width="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/postName"
+        app:layout_constraintTop_toBottomOf="@id/postImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/heartImage"
@@ -59,7 +62,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/userInfoContainer"
         android:layout_width="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/heartContainer"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_height="wrap_content">
@@ -77,6 +82,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_marginTop="4dp"
+            android:paddingLeft="10dp"
             android:text="william"
             app:layout_constraintStart_toEndOf="@id/userImage"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -89,12 +95,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_margin="20dp"
+        android:padding="10dp"
         android:lineSpacingExtra="8dp"
         android:text="A great Chinese Classic whole leaf with a bright tint of  jade.  A clear green liquor, brisk and tasty with elegant floral and grassy notes well structured with an edge of fresh hazelnut.
 
 This lot is exclusive to our tea house and produced according to our specifications."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userInfoContainer"/>
+        app:layout_constraintTop_toBottomOf="@id/heartContainer"/>
 
 
 

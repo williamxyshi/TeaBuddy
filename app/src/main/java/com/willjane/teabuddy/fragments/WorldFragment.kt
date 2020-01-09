@@ -91,7 +91,7 @@ class WorldFragment: Fragment(), CommunityPostAdapter.CommunityPostInterface {
         postDesc.text = post.postDesc
 
         val posterName: TextView = view.findViewById(R.id.brewTemp)
-        posterName.text = post.posterName
+        posterName.text = "Posted by " + post.posterName
 
         val heartCount: TextView = view.findViewById(R.id.heartCount)
         heartCount.text = post.postHearts.toString()

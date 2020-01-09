@@ -13,6 +13,7 @@ import com.willjane.teabuddy.utils.DAO.TeaFirestoreDao
 import com.willjane.teabuddy.utils.DAO.TeaRealmDAO
 import com.willjane.teabuddy.utils.DAO.TeaUserAuthDAO
 import com.willjane.teabuddy.utils.DAO.TeaUserRealmDAO
+import com.willjane.teabuddy.utils.Helpers
 import com.willjane.teabuddy.utils.models.CommunityPost
 import com.willjane.teabuddy.utils.models.Tea
 import com.willjane.teabuddy.utils.models.TeaBuddyUser
@@ -102,6 +103,7 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
                 timerLength.value = millisUntilFinished
             }
             override fun onFinish() {
+                Helpers.makeCustomToast("Done brewing!")
                 timerLength.value = 0
             }
 
