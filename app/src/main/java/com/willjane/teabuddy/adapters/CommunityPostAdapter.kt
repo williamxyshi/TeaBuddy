@@ -32,6 +32,8 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
             userImage = itemView.findViewById(R.id.postUserImage)
             favHeart = itemView.findViewById(R.id.heart)
             heartCount = itemView.findViewById(R.id.heartCount)
+            postDescription = itemView.findViewById(R.id.postDesc)
+
 
         }
     }
@@ -47,13 +49,18 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
 
         //sets the colour of the heart
         if(likedByCurrentUser == true){
-            holder.favHeart.setColorFilter(context.resources.getColor(R.color.red))
+            holder.favHeart.setColorFilter(context.resources.getColor(R.color.pale_violet_red))
         } else {
             holder.favHeart.setColorFilter(context.resources.getColor(R.color.white))
         }
 
         holder.postTitle.text = post.postTitle
-        holder.userName.text = post.posterName
+        holder.userName.text = "Posted by " + post.posterName
+        if (post.postDesc.length > 30) {
+            holder.postDescription.text = post.postDesc.substring(0,30) + "..."
+        } else {
+            holder.postDescription.text = post.postDesc
+        }
 
         //TODO: add hearts feature, and icons to comment and stuff
 
@@ -105,7 +112,7 @@ class CommunityPostAdapter(private val vm: MainActivityViewModel, private val co
         lateinit var postTitle: TextView
         lateinit var userName: TextView
         lateinit var userImage: ImageView
-
+        lateinit var postDescription: TextView
         lateinit var favHeart : ImageView
         lateinit var heartCount : TextView
 

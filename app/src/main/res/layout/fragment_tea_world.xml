@@ -56,15 +56,12 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
             android:src="@drawable/ic_plus"
             app:fabCustomSize="65dp"
             android:scaleType="fitXY"
-            app:maxImageSize="45dp"
-            android:elevation="4dp"
+            app:maxImageSize="35dp"
             android:backgroundTint="@color/purple"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

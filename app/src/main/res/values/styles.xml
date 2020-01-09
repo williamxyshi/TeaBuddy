@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/purpleDark</item>
         <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/purple</item>
         <item name="android:textColorPrimary">@color/black</item>
     </style>
 
@@ -13,7 +13,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/purple</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/purple</item>
     </style>
 
 </resources>
