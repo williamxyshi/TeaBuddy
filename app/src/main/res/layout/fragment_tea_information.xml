@@ -120,9 +120,6 @@
         android:layout_marginTop="20dp"
         android:layout_margin="20dp"
         android:lineSpacingExtra="8dp"
-        android:text="A great Chinese Classic whole leaf with a bright tint of  jade.  A clear green liquor, brisk and tasty with elegant floral and grassy notes well structured with an edge of fresh hazelnut.
-
-This lot is exclusive to our tea house and produced according to our specifications."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userInfoContainer"/>
 
