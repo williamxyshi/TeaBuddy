@@ -1,6 +1,8 @@
 # TeaBuddy
-###### built by [Will](https://github.com/williamxyshi) and [Jane](https://github.com/jane-le) with :heart: and :tea:   
-  <img src="https://github.com/williamxyshi/TeaBuddy/blob/master/app/src/main/res/drawable/ic_teacup.png" width="20%">
+###### built by [Will](https://github.com/williamxyshi) and [Jane](https://github.com/jane-le) with :heart: and :tea: 
+
+[<img src="https://miro.medium.com/max/1200/1*OIIv4FEjJQMqh-zEPhtlYA.png" width="20%">](https://play.google.com/store/apps/details?id=com.willjane.teabuddy&hl=en_CA)
+  <img src="https://github.com/williamxyshi/TeaBuddy/blob/master/app/src/main/res/drawable/ic_teacup.png" width="7%">
 
 ### TeaBuddy is an Android App that helps users explore the world of tea
 
